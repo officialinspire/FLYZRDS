@@ -29,7 +29,7 @@
 <label class="placement" for="place-x">Place next item: <output id="place-label">Center</output><input id="place-x" type="range" min="15" max="85" step="5" value="50"></label>
 <div class="care-actions"><button type="button" id="feed"><span class="care-icon feed-icon" aria-hidden="true"></span>Feed</button><button type="button" id="play"><span class="care-icon play-icon" aria-hidden="true"></span>Play</button><button type="button" id="rest"><span class="care-icon rest-icon" aria-hidden="true"></span><span id="rest-text">Rest</span></button><button type="button" id="habitat-open"><span class="care-icon habitat-icon" aria-hidden="true"></span>Habitat</button></div>
 <p id="level-value" class="note">Level 1 / 5 · 0 demo XP</p><p id="duel-unlock" class="note">Jade accent unlocked</p><button type="button" id="duel-open" disabled>Practice duel</button><p class="note">Association training is unavailable until live neural control passes its research gate.</p>
-<div class="activity-actions"><button type="button" id="expedition-open" disabled>Expedition</button></div><p id="supplies-value" class="note">0 exploration supplies</p>
+<div class="activity-actions"><button type="button" id="expedition-open" disabled>Expedition</button><button type="button" id="camera-open" disabled>Camera companion</button></div><p id="supplies-value" class="note">0 exploration supplies</p>
 <p id="care-message" class="note" role="status" aria-live="polite">Place something in the garden and let your companion explore.</p>
 </div>
 <div class="habitat-actions"><button type="button" id="pause" class="primary">Pause</button><button type="button" id="back" class="secondary">Home</button></div>
@@ -68,6 +68,20 @@
 <div class="activity-actions"><button type="button" id="expedition-start">Start Expedition / resume GPS</button><button type="button" id="expedition-pause" disabled>Pause</button><button type="button" id="expedition-finish" disabled>Finish and claim</button></div>
 <h3>Indoor observation quest</h3><p class="note">Same maximum reward, no walking or permission needed. Observe five prompts for 20 visible seconds each. Switching from a walk resets its unclaimed distance.</p><p id="indoor-prompt"></p>
 <div class="activity-actions"><button type="button" id="expedition-indoor">Start / resume indoor quest</button><button type="button" id="expedition-station" disabled>Record observation</button><button type="button" id="expedition-close">Pause and return</button></div>
+</dialog>
+<dialog id="camera-dialog" aria-labelledby="camera-title">
+<h2 id="camera-title">Camera companion</h2><p class="pill">ANIMATED OVERLAY · SCRIPTED DEMO</p>
+<p>Stay stationary. Enable rear camera requests camera permission only, never the microphone. Your dinosaur is a movable overlay, not surface-anchored AR. Hide or close to turn the camera off.</p>
+<p class="note">No camera frames or photos are uploaded automatically. Compose a photo locally, then choose how to save it. Garden background works without camera access.</p>
+<video id="camera-video" muted playsinline hidden aria-hidden="true"></video>
+<canvas id="camera-canvas" width="640" height="480" role="img" aria-label="Unmirrored camera or garden scene with your movable dinosaur companion"></canvas>
+<label for="camera-scale">Companion size</label><input id="camera-scale" type="range" min="0.5" max="3" step="0.25" value="2">
+<label for="camera-x">Horizontal position</label><input id="camera-x" type="range" min="0" max="100" step="1" value="50">
+<label for="camera-y">Vertical position</label><input id="camera-y" type="range" min="0" max="100" step="1" value="80">
+<p class="note">Drag the companion in the preview, or use the sliders with touch or arrow keys.</p>
+<p id="camera-status" role="status" aria-live="polite"></p>
+<div class="activity-actions"><button type="button" id="camera-enable">Enable rear camera</button><button type="button" id="camera-garden">Use garden / stop camera</button><button type="button" id="camera-export" disabled>Compose local photo</button><button type="button" id="camera-close">Return to garden</button></div>
+<div id="camera-photo" hidden><img id="camera-photo-preview" alt="Your companion in the composed scene"><a id="camera-download" href="#camera-photo" class="file-button" download="flyzrds-companion.png">Download PNG</a><p class="note">If download is unsupported, open or long-press this photo to save/share with browser controls. This preview is cleared when you leave or hide the page.</p></div>
 </dialog>
 <script type="module" src="/src/main.ts"></script>
 </body></html>

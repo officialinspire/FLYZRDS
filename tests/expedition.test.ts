@@ -1,7 +1,7 @@
 import { IDBFactory } from "fake-indexeddb";
 import { describe, expect, it, vi } from "vitest";
 import { DemoController } from "../apps/web/src/controller";
-import { freshProgress } from "../apps/web/src/duel";
+import { freshProgress, playRound, startDuel } from "../apps/web/src/duel";
 import {
   beginJourney,
   DistanceFilter,
@@ -122,4 +122,44 @@ it("caps claims, supports equivalent indoor rewards and prevents repeat/reload c
   e = beginJourney(e, "indoor");
   if (e.journey) e.journey.stations = 5;
   expect(finishJourney(e, 259200000).supplies).toBe(1000);
+});
+it("migrates v3 without losing duel progress and atomically retains its backup", async () => {
+  const factory = new IDBFactory(),
+    store = new SaveStore(factory);
+  const checkpoint = new DemoController().checkpoint();
+  let progress = startDuel(freshProgress());
+  for (let i = 0; i < 20; i++)
+    progress = playRound(progress, "attack", checkpoint);
+  const legacy = {
+    version: 3,
+    progress,
+    pet: { id: "previous-pet", name: "Jade", hatched: true },
+    world: createWorld(),
+    controller: new DemoController().checkpoint(),
+    settings: { reducedMotion: true, sound: false },
+    cloud: null,
+  };
+  await new Promise<void>((resolve, reject) => {
+    const request = factory.open("flyzrds-v1", 1);
+    request.onupgradeneeded = () => request.result.createObjectStore("saves");
+    request.onerror = () => reject(request.error);
+    request.onsuccess = () => {
+      const db = request.result,
+        tx = db.transaction("saves", "readwrite");
+      tx.objectStore("saves").put(legacy, "current");
+      tx.oncomplete = () => {
+        db.close();
+        resolve();
+      };
+      tx.onabort = () => reject(tx.error);
+    };
+  });
+  const loaded = await store.load();
+  if (!loaded) throw new Error("Missing migrated save");
+  expect(loaded.exploration).toEqual(freshExploration());
+  expect(loaded.progress).toEqual(legacy.progress);
+  expect(loaded.controller).toEqual(legacy.controller);
+  expect(loaded.pet).toEqual(legacy.pet);
+  await store.write(loaded);
+  expect(await store.previousBackup()).toEqual(legacy);
 });

@@ -143,3 +143,31 @@ Next: resolve the research gate before implementing Prompt 05 or Prompt 06.
   claims. Actual hardware location/background behavior is not verified.
 - See EXPEDITIONS.md for limits, privacy, API references and offline/online scope.
   No coordinates, media, deployment or sensor requests on startup are committed.
+
+## Prompt 09 — optional camera companion; final 08/09 verification
+
+- Added camera.ts cancellable rear-video-only lifecycle and PNG encoder;
+  camera-ui.ts draws an unmirrored same-origin animated overlay with touch and
+  keyboard position/scale controls, garden fallback and local composition.
+- All tracks stop on hide/exit/close, explicit fallback, revocation/inactive media
+  and errors. Late grants after cancellation are discarded. No microphone,
+  automatically uploaded frames, saved photos, surface-anchored AR or WebXR.
+- Shared activity writes now stop queued advancement on hide/exit and finish
+  pending commits before releasing tab ownership. Storage failures preserve the
+  saved aggregate state and disable further advancement.
+- Updated README.md, ARCHITECTURE.md, EXPEDITIONS.md and CAMERA.md to describe
+  demo scope, schema v4, permission timing, privacy and remaining hardware checks.
+- Final required npm ci and npm run check passed; latest check after lifecycle
+  refinements passed: 46 tests, strict typecheck, Biome and production build.
+  Python brain tests passed (5); asset verification passed (32 sprites and hashes);
+  git diff --check passed. Tests include integrated GPS denial, timed indoor
+  observations, duplicate clicks, atomic-write failure protection, camera hide
+  cleanup, delayed grants, export failures and v3 migration retaining duel XP.
+- Browser visual attempt could not open localhost: ERR_BLOCKED_BY_CLIENT. Vite
+  preview with a wildcard host also failed network-interface discovery in this
+  environment. No visual or actual iPhone/Android GPS, camera indicator, rotation
+  or photo-save acceptance is claimed; follow the device checklist in CAMERA.md
+  and EXPEDITIONS.md before release.
+- No deployment, DNS/Shopify changes, paid compute or new neural training.
+  Next independent phase: prompt 10 install/offline boundary. Prompt 05/06 neural
+  gates and online authoritative rewards remain open.

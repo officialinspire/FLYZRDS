@@ -1,5 +1,6 @@
 import "./style.css";
 import { loadArt } from "./assets";
+import { setupCamera } from "./camera-ui";
 import { DemoController } from "./controller";
 import {
   DUEL,
@@ -47,7 +48,9 @@ let save: Save,
   inHabitat = false,
   wantsRun = true,
   writes: Promise<void> = Promise.resolve();
-let commitBusy = false;
+let commitBusy = false,
+  exiting = false;
+let commitCompletion: Promise<void> | null = null;
 let replaceAction: (() => Promise<void>) | null = null;
 function fresh(): Save {
   const c = new DemoController();
@@ -72,12 +75,14 @@ function sync() {
   const running =
     safe &&
     owns &&
+    !exiting &&
     inHabitat &&
     wantsRun &&
     !document.hidden &&
     !commitBusy &&
     !el<HTMLDialogElement>("duel-dialog").open &&
     !el<HTMLDialogElement>("expedition-dialog").open &&
+    !el<HTMLDialogElement>("camera-dialog").open &&
     !settings.open &&
     !confirmation.open &&
     !el<HTMLDialogElement>("habitat-settings").open &&
@@ -92,6 +97,7 @@ function sync() {
   updateCare();
   updateDuel();
   expeditions.update();
+  camera.update();
 }
 function persist(): Promise<void> {
   if (!safe || !owns || commitBusy) return writes;
@@ -224,8 +230,12 @@ document.addEventListener("visibilitychange", () => {
   if (document.hidden) void persist();
 });
 window.addEventListener("pagehide", () => {
+  exiting = true;
   controller.pause();
-  void persist().finally(() => ownership.dispose());
+  void persist().finally(async () => {
+    await commitCompletion;
+    ownership.dispose();
+  });
 });
 window.addEventListener("pageshow", (event) => {
   if (event.persisted) location.reload();
@@ -266,7 +276,10 @@ function frame(now: number) {
     });
   if (save) {
     updateCare();
-    if (!document.hidden) expeditions.update();
+    if (!document.hidden) {
+      expeditions.update();
+      camera.render(now);
+    }
     if (el<HTMLDialogElement>("duel-dialog").open)
       paintDuel(
         el<HTMLCanvasElement>("duel-canvas"),
@@ -290,7 +303,7 @@ function frame(now: number) {
   requestAnimationFrame(frame);
 }
 function editable() {
-  return safe && owns;
+  return safe && owns && !exiting;
 }
 function activeCare() {
   return (
@@ -302,6 +315,7 @@ function activeCare() {
     !commitBusy &&
     !el<HTMLDialogElement>("duel-dialog").open &&
     !el<HTMLDialogElement>("expedition-dialog").open &&
+    !el<HTMLDialogElement>("camera-dialog").open &&
     !settings.open &&
     !confirmation.open &&
     !el<HTMLDialogElement>("habitat-settings").open
@@ -459,10 +473,14 @@ async function duelChange(change: (p: Progress) => Progress) {
 async function commitSave(change: (s: Save) => Save): Promise<boolean> {
   if (!editable() || commitBusy || document.hidden) return false;
   commitBusy = true;
+  let complete: () => void = () => {};
+  commitCompletion = new Promise<void>((resolve) => {
+    complete = resolve;
+  });
   sync();
   try {
     await writes;
-    if (!safe) return false;
+    if (!editable() || document.hidden) return false;
     const next = structuredClone(save);
     next.controller = controller.checkpoint();
     const changed = change(next);
@@ -481,6 +499,8 @@ async function commitSave(change: (s: Save) => Save): Promise<boolean> {
     return false;
   } finally {
     commitBusy = false;
+    complete();
+    commitCompletion = null;
     sync();
   }
 }
@@ -511,6 +531,13 @@ arena.addEventListener("close", () => {
   void persist();
 });
 const expeditions = setupExpeditions({
+  getSave: () => save,
+  editable,
+  busy: () => commitBusy,
+  sync,
+  commit: commitSave,
+});
+const camera = setupCamera({
   getSave: () => save,
   editable,
   busy: () => commitBusy,
