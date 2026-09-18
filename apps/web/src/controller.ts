@@ -14,7 +14,7 @@ import {
 } from "@flyzrds/contracts";
 export class DemoController implements Controller {
   readonly mode = "demo" as const;
-  readonly model = "demo-wander-v1";
+  readonly model = "demo-care-v2";
   state: Lifecycle = "ready";
   private tick = 0;
   private rng: number;
@@ -38,10 +38,27 @@ export class DemoController implements Controller {
       this.rng ^= this.rng << 5;
       this.rng >>>= 0;
     }
-    const move =
-      o.x < 0.15 ? 1 : o.x > 0.85 ? -1 : this.rng / 0xffffffff > 0.5 ? 1 : -1;
+    const delta = o.targetX === undefined ? undefined : o.targetX - o.x;
+    const move = o.rest
+      ? 0
+      : delta !== undefined
+        ? Math.abs(delta) <= 0.018
+          ? 0
+          : Math.sign(delta)
+        : o.x < 0.15
+          ? 1
+          : o.x > 0.85
+            ? -1
+            : this.rng / 0xffffffff > 0.5
+              ? 1
+              : -1;
     this.tick++;
-    return { version: 1, tick: o.tick, move, interact: false };
+    return {
+      version: 1,
+      tick: o.tick,
+      move,
+      interact: !o.rest && delta !== undefined && Math.abs(delta) <= 0.018,
+    };
   }
   reward(event: RewardEvent) {
     text(event.id);

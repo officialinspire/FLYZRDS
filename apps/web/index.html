@@ -1,6 +1,6 @@
 <!doctype html>
 <html lang="en">
-<head><meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover"><meta name="theme-color" content="#15132b"><meta name="description" content="FLYZRDS: Wizard Lizard Flies. Raise a little magic with INSPIRE's experimental virtual pet."><title>FLYZRDS · Wizard Lizard Flies</title></head>
+<head><meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover"><meta name="theme-color" content="#15132b"><meta name="description" content="FLYZRDS: Wizard Lizard Flies. Raise a little magic with INSPIRE's experimental virtual pet."><link rel="icon" href="./assets/icon-192.png"><link rel="apple-touch-icon" href="./assets/icon-180.png"><title>FLYZRDS · Wizard Lizard Flies</title></head>
 <body>
 <div id="app">
 <header><a href="#title-screen" id="home-link" aria-label="FLYZRDS home">INSPIRE<span class="wordmark">FLYZRDS<span class="spark">✦</span></span></a><span class="build">EXPERIMENT 001</span></header>
@@ -18,8 +18,20 @@
   <p class="intro">A quiet moment in the enchanted garden.</p>
   <div class="scene-wrap"><canvas id="habitat-canvas" width="320" height="220" role="img" aria-label="Your demo dinosaur wandering in a pixel garden"></canvas><span id="state-label" class="scene-label">RESTING</span></div>
   <div class="pet-info"><span><small>CREATURE</small>Long-neck wizard</span><span><small>CONTROLLER</small>Scripted demo</span></div>
-  <div class="habitat-actions"><button type="button" id="pause" class="primary">Pause</button><button type="button" id="back" class="secondary">Home</button></div>
-  <p class="note">This early garden uses a deterministic demo controller. Fly-brain research is separate; live neural control and care activities are coming later.</p>
+  <section class="needs" aria-label="Pet care game stats">
+<label>Food <output id="food-value">75</output><meter id="food-meter" min="0" max="100" value="75">75</meter></label>
+<label>Energy <output id="energy-value">80</output><meter id="energy-meter" min="0" max="100" value="80">80</meter></label>
+<label>Enrichment <output id="enrichment-value">65</output><meter id="enrichment-meter" min="0" max="100" value="65">65</meter></label>
+<label>Bond <output id="bond-value">10</output><meter id="bond-meter" min="0" max="100" value="10">10</meter></label>
+</section>
+<div id="hatch-panel"><label for="hatch-name">Name your little wizard</label><input id="hatch-name" maxlength="24" value="Sprout" autocomplete="off"><button type="button" id="hatch" class="primary">Hatch my companion ✦</button></div>
+<div id="care-panel" hidden>
+<label class="placement" for="place-x">Place next item: <output id="place-label">Center</output><input id="place-x" type="range" min="15" max="85" step="5" value="50"></label>
+<div class="care-actions"><button type="button" id="feed"><span class="care-icon feed-icon" aria-hidden="true"></span>Feed</button><button type="button" id="play"><span class="care-icon play-icon" aria-hidden="true"></span>Play</button><button type="button" id="rest"><span class="care-icon rest-icon" aria-hidden="true"></span><span id="rest-text">Rest</span></button><button type="button" id="habitat-open"><span class="care-icon habitat-icon" aria-hidden="true"></span>Habitat</button></div>
+<p id="care-message" class="note" role="status" aria-live="polite">Place something in the garden and let your companion explore.</p>
+</div>
+<div class="habitat-actions"><button type="button" id="pause" class="primary">Pause</button><button type="button" id="back" class="secondary">Home</button></div>
+  <p class="note">This early garden uses a deterministic demo controller. Care stats are game mechanics. Fly-brain research is separate; live neural control is coming later.</p>
 </section>
 <p id="message" role="status" aria-live="polite"></p>
 <aside id="recovery" hidden><h2>Your save needs attention</h2><p>We haven't overwritten it. Restore an exported save, or explicitly reset to start again.</p><button type="button" id="recovery-settings">Open save controls</button></aside>
@@ -30,9 +42,10 @@
 <label class="toggle"><span>Reduce motion</span><input id="motion" type="checkbox"></label>
 <p class="note">Sound is off in this foundation build. Camera and location are never requested on startup.</p>
 <div class="save-actions"><button type="button" id="export">Export save</button><label class="file-button" for="import">Restore save<input id="import" type="file" accept="application/json,.json"></label><button type="button" id="reset" class="danger">Reset demo pet</button></div>
-<p class="note">Export a backup before clearing browser data. Installation and offline support arrive in a later phase.</p>
+<button type="button" id="export-legacy">Export pre-upgrade backup</button><p class="note">Export a backup before clearing browser data. Installation and offline support arrive in a later phase.</p>
 <p id="settings-message" role="status" aria-live="polite"></p>
 </dialog>
 <dialog id="confirm" aria-labelledby="confirm-title"><h2 id="confirm-title">Replace this demo pet?</h2><p id="confirm-description">This replaces the current saved pet. Export a backup first if you want to keep it.</p><div class="title-actions"><button type="button" id="confirm-cancel">Keep my pet</button><button type="button" id="confirm-replace" class="danger">Replace pet</button></div></dialog>
+<dialog id="habitat-settings" aria-labelledby="habitat-title"><h2 id="habitat-title">A little place of your own.</h2><label for="scenery">Garden style</label><select id="scenery"><option value="moonlit">Moonlit garden</option><option value="mushrooms">Mushroom grove</option></select><p class="note">Decorations stay outside the walking lane. Placed berries and toys stay where you left them.</p><button type="button" id="habitat-close">Back to my companion</button></dialog>
 <script type="module" src="/src/main.ts"></script>
 </body></html>

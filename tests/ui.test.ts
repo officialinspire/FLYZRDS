@@ -43,13 +43,31 @@ it("connects title, habitat, pause, settings and confirmed reset without request
   const original = await store.load();
   expect(original?.pet.name).toBe("Sprout");
   get("start").click();
+  get("hatch").click();
   expect(get("title-screen").hidden).toBe(true);
   expect(get("habitat-screen").hidden).toBe(false);
-  expect(get("state-label").textContent).toContain("EXPLORING");
+  expect(get("state-label").textContent).toContain("DEMO");
   get("pause").click();
   expect(get("state-label").textContent).toContain("RESTING");
   get("pause").click();
-  expect(get("state-label").textContent).toContain("EXPLORING");
+  expect(get("state-label").textContent).toContain("DEMO");
+  get("feed").click();
+  get("feed").click();
+  await vi.waitFor(async () =>
+    expect((await store.load())?.world.items).toHaveLength(1),
+  );
+  get("rest").click();
+  await vi.waitFor(async () =>
+    expect((await store.load())?.world.resting).toBe(true),
+  );
+  get("habitat-open").click();
+  const scenery = get<HTMLSelectElement>("scenery");
+  scenery.value = "mushrooms";
+  scenery.dispatchEvent(new Event("change"));
+  get("habitat-close").click();
+  await vi.waitFor(async () =>
+    expect((await store.load())?.world.scenery).toBe("mushrooms"),
+  );
   get("home-link").click();
   get("settings-open").click();
   const motion = get<HTMLInputElement>("motion");
