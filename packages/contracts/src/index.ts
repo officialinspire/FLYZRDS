@@ -14,6 +14,8 @@ export interface Observation {
   dtMs: number;
   x: number;
   cue: number;
+  targetX?: number;
+  rest?: boolean;
 }
 export interface Action {
   version: 1;
@@ -90,6 +92,8 @@ export function validateObservation(value: unknown): Observation {
     dtMs: number(v.dtMs, 1, 100),
     x: number(v.x, 0, 1),
     cue: number(v.cue, 0, 1),
+    ...(v.targetX === undefined ? {} : { targetX: number(v.targetX, 0, 1) }),
+    ...(v.rest === undefined ? {} : { rest: boolean(v.rest) }),
   };
 }
 export function validateAction(value: unknown, tick: number): Action {
@@ -122,4 +126,9 @@ export function validateCheckpoint(value: unknown): Checkpoint {
     seed: number(v.seed, 1, 0xffffffff, true),
     rng: number(v.rng, 1, 0xffffffff, true),
   };
+}
+
+export function boolean(value: unknown): boolean {
+  if (typeof value !== "boolean") throw new Error("Invalid boolean");
+  return value;
 }

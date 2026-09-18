@@ -1,9 +1,16 @@
 import "./style.css";
+import { loadArt } from "./assets";
 import { DemoController } from "./controller";
 import { Ownership } from "./ownership";
 import { paint } from "./render";
 import { parseImport, type Save, SaveStore } from "./storage";
-import { advance, FixedClock } from "./world";
+import {
+  advance,
+  createWorld,
+  FixedClock,
+  type ItemKind,
+  placeItem,
+} from "./world";
 
 function el<T extends HTMLElement>(id: string): T {
   const value = document.getElementById(id);
@@ -32,9 +39,9 @@ let replaceAction: (() => Promise<void>) | null = null;
 function fresh(): Save {
   const c = new DemoController();
   return {
-    version: 1,
-    pet: { id: crypto.randomUUID(), name: "Sprout" },
-    world: { tick: 0, x: 0.5, direction: 1 },
+    version: 2,
+    pet: { id: crypto.randomUUID(), name: "Sprout", hatched: false },
+    world: createWorld(),
     controller: c.checkpoint(),
     settings: {
       reducedMotion: matchMedia("(prefers-reduced-motion: reduce)").matches,
@@ -54,7 +61,9 @@ function sync() {
     wantsRun &&
     !document.hidden &&
     !settings.open &&
-    !confirmation.open;
+    !confirmation.open &&
+    !el<HTMLDialogElement>("habitat-settings").open &&
+    save.pet.hatched;
   if (running) controller.start();
   else controller.pause();
   clock.reset();
@@ -62,6 +71,7 @@ function sync() {
     ? "EXPLORING • DEMO"
     : "RESTING • DEMO";
   el("pause").textContent = wantsRun ? "Pause" : "Resume";
+  updateCare();
 }
 function persist(): Promise<void> {
   if (!safe || !owns) return writes;
@@ -83,6 +93,9 @@ function install(next: Save) {
   controller.restore(save.controller);
   motion.checked = save.settings.reducedMotion;
   el("pet-name").textContent = save.pet.name;
+  el("hatch-panel").hidden = save.pet.hatched;
+  el("care-panel").hidden = !save.pet.hatched;
+  el<HTMLInputElement>("hatch-name").value = save.pet.name;
 }
 function openSettings() {
   settings.showModal();
@@ -212,7 +225,8 @@ async function boot() {
       el<HTMLInputElement>("import").disabled = true;
       return;
     }
-    if (!loaded) await store.write(save);
+    // v1 is backed up atomically by SaveStore before a migrated v2 is written.
+    await store.write(save);
     safe = true;
     start.disabled = false;
     start.innerHTML = "Enter the garden <span>↗</span>";
@@ -231,16 +245,16 @@ function frame(now: number) {
       save.world = advance(save.world, controller);
     });
   if (save) {
+    updateCare();
     const reduced = save.settings.reducedMotion;
     if (inHabitat)
       paint(
         el<HTMLCanvasElement>("habitat-canvas"),
-        save.world.x,
-        save.world.tick,
+        save.world,
         reduced,
-        save.world.direction,
+        save.pet.hatched,
       );
-    else paint(el<HTMLCanvasElement>("title-canvas"), 0.5, 0, true);
+    else paint(el<HTMLCanvasElement>("title-canvas"));
     if (now - lastSave > 2000) {
       lastSave = now;
       if (controller.state === "running") void persist();
@@ -248,5 +262,126 @@ function frame(now: number) {
   }
   requestAnimationFrame(frame);
 }
+function editable() {
+  return safe && owns;
+}
+function activeCare() {
+  return (
+    editable() &&
+    inHabitat &&
+    wantsRun &&
+    !document.hidden &&
+    save.pet.hatched &&
+    !settings.open &&
+    !confirmation.open &&
+    !el<HTMLDialogElement>("habitat-settings").open
+  );
+}
+function updateCare() {
+  if (!save) return;
+  for (const key of ["food", "energy", "enrichment", "bond"] as const) {
+    const value = Math.round(save.world.needs[key]);
+    const output = el(`${key}-value`);
+    if (output.textContent !== String(value))
+      output.textContent = String(value);
+    el<HTMLMeterElement>(`${key}-meter`).value = value;
+  }
+  for (const key of ["feed", "play", "rest"])
+    el<HTMLButtonElement>(key).disabled = !activeCare();
+  el<HTMLButtonElement>("hatch").disabled = !editable();
+  el<HTMLButtonElement>("habitat-open").disabled = !editable();
+  el("rest-text").textContent = save.world.resting ? "Wake" : "Rest";
+  if (controller.state === "running")
+    el("state-label").textContent =
+      `${save.world.animation.toUpperCase()} • DEMO`;
+}
+function place(kind: ItemKind) {
+  if (!activeCare()) return;
+  const result = placeItem(
+    save.world,
+    kind,
+    Number(el<HTMLInputElement>("place-x").value) / 100,
+  );
+  const changed = save.world !== result.world;
+  save.world = result.world;
+  el("care-message").textContent = result.message;
+  if (changed) void persist();
+}
+el("feed").onclick = () => place("food");
+el("play").onclick = () => place("toy");
+el("rest").onclick = () => {
+  if (!activeCare()) return;
+  save.world = {
+    ...save.world,
+    resting: !save.world.resting,
+    animation: save.world.resting ? "idle" : "rest",
+    actionUntil: save.world.tick,
+  };
+  el("care-message").textContent = save.world.resting
+    ? "A cozy rest. Energy will recover while the garden is open."
+    : "Ready to explore again.";
+  updateCare();
+  void persist();
+};
+el("hatch").onclick = () => {
+  if (!editable() || save.pet.hatched) return;
+  const name = el<HTMLInputElement>("hatch-name").value.trim();
+  if (!name || name.length > 24) {
+    el("message").textContent = "Choose a name from 1 to 24 characters.";
+    return;
+  }
+  save.pet = { ...save.pet, name, hatched: true };
+  install({ ...save, controller: controller.checkpoint() });
+  el("care-message").textContent =
+    `Welcome, ${name}! Place berries or a toy to get acquainted.`;
+  sync();
+  void persist();
+};
+el<HTMLInputElement>("place-x").oninput = () => {
+  const x = Number(el<HTMLInputElement>("place-x").value);
+  el("place-label").textContent = x < 40 ? "Left" : x > 60 ? "Right" : "Center";
+};
+el("habitat-open").onclick = () => {
+  if (!editable()) return;
+  el<HTMLSelectElement>("scenery").value = save.world.scenery;
+  el<HTMLDialogElement>("habitat-settings").showModal();
+  sync();
+};
+el<HTMLSelectElement>("scenery").onchange = () => {
+  if (!editable()) return;
+  save.world.scenery =
+    el<HTMLSelectElement>("scenery").value === "mushrooms"
+      ? "mushrooms"
+      : "moonlit";
+  void persist();
+};
+el("habitat-close").onclick = () =>
+  el<HTMLDialogElement>("habitat-settings").close();
+el("habitat-settings").addEventListener("close", () => {
+  sync();
+  void persist();
+});
+el("export-legacy").onclick = async () => {
+  try {
+    const backup = await store.legacyBackup();
+    if (!backup) {
+      status.textContent = "No older save needed migration on this device.";
+      return;
+    }
+    const url = URL.createObjectURL(
+      new Blob([JSON.stringify(backup, null, 2)], { type: "application/json" }),
+    );
+    const a = document.createElement("a");
+    a.href = url;
+    a.download = "flyzrds-v1-backup.json";
+    a.click();
+    setTimeout(() => URL.revokeObjectURL(url), 1000);
+  } catch (error) {
+    status.textContent = `Backup unavailable: ${displayError(error)}`;
+  }
+};
+void loadArt().catch((error) => {
+  message.textContent = displayError(error);
+});
 void boot();
 requestAnimationFrame(frame);

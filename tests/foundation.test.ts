@@ -14,13 +14,13 @@ import {
   SaveStore,
   validateSave,
 } from "../apps/web/src/storage";
-import { advance, FixedClock } from "../apps/web/src/world";
+import { advance, createWorld, FixedClock } from "../apps/web/src/world";
 
 function fixture(): Save {
   return {
-    version: 1,
-    pet: { id: "pet-123", name: "Sprout" },
-    world: { tick: 0, x: 0.5, direction: 1 },
+    version: 2,
+    pet: { id: "pet-123", name: "Sprout", hatched: true },
+    world: createWorld(),
     controller: new DemoController().checkpoint(),
     settings: { sound: false, reducedMotion: false },
     cloud: null,
@@ -46,7 +46,7 @@ describe("contract trust boundary", () => {
     ).toThrow();
   });
   it("rejects a future save version without migrating destructively", () =>
-    expect(() => validateSave({ ...fixture(), version: 2 })).toThrow());
+    expect(() => validateSave({ ...fixture(), version: 99 })).toThrow());
   it("rejects inconsistent world/checkpoint ticks", () => {
     const s = fixture();
     s.world.tick = 1;
@@ -66,7 +66,7 @@ describe("deterministic demo and fixed clock", () => {
   it("continues exact trajectory after restore", () => {
     const a = new DemoController(23);
     a.start();
-    let world = { tick: 0, x: 0.5, direction: 1 };
+    let world = createWorld();
     for (let i = 0; i < 123; i++) world = advance(world, a);
     const b = new DemoController();
     b.restore(a.checkpoint());
@@ -117,7 +117,7 @@ describe("IndexedDB saves", () => {
     const save = fixture();
     await store.write(save);
     await expect(
-      store.write({ ...save, version: 2 } as unknown as Save),
+      store.write({ ...save, version: 99 } as unknown as Save),
     ).rejects.toThrow();
     expect(await store.load()).toEqual(save);
   });

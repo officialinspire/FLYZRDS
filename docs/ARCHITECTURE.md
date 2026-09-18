@@ -15,7 +15,7 @@ Rendering can run at display refresh rate; world advances at 20 Hz. A delayed fr
 
 ## Persistence and ownership
 
-IndexedDB database `flyzrds-v1`, `saves` store, `current` key. DB completion—not request success—resolves writes. Save schema v1 includes pet ID, world state, controller PRNG/seed/tick, settings and a separate `cloud` reference slot. Unknown schemas/models and mismatched ticks fail closed. No neural arrays fit this schema. No destructive implicit migration; future versions must implement an explicit migration with backup.
+IndexedDB database `flyzrds-v1`, `saves` store, `current` key. DB completion—not request success—resolves writes. Save schema v2 includes pet ID, world state, controller PRNG/seed/tick, settings and a separate `cloud` reference slot. Unknown schemas/models and mismatched ticks fail closed. No neural arrays fit this schema. Schema v1 has an explicit identity-preserving migration; the original record is backed up in the same transaction as the first v2 write. Unknown versions are rejected.
 
 A same-origin Web Lock `flyzrds:active-pet:v1` is held across the owning tab's lifetime. Contending tabs cannot advance or replace the save. Unsupported locks fail closed. Read-only tabs may inspect/export the last valid save. Close the owning tab then reload the other to acquire ownership. Pagehide saves best-effort before releasing the lock; browser process death releases it automatically. Pages restored from bfcache reload to reacquire ownership. Cross-device concurrency is not implemented.
 
@@ -24,3 +24,25 @@ Writes serialize. Settings dialogs pause simulation. Invalid imports leave curre
 ## Hosting
 
 Vite relative base supports a static subdirectory preview. Eventual standalone HTTPS app on an INSPIRE subdomain is preferred over embedding the app within Shopify. The Python research CLI cannot run on GitHub Pages. No live deploy or DNS change is included. Manifest/service-worker cache management, online sessions, authentication and production resource caps are future phases.
+
+
+## Care phase
+
+`balance.ts` centralizes all bounds/rates, interaction gains, cooldowns, and movement.
+`world.ts` advances needs and interactions exclusively through fixed 50ms steps.
+Observations gained optional validated targetX and rest fields; the local model
+identifier is now demo-care-v2. The controller chooses approach/stop/interact;
+world rules clamp the walking lane, consume an object once, and update bounded
+needs. Decorations remain outside the walking lane. One food and one toy maximum;
+consumption starts a persisted active-tick cooldown. No XP, currency, learned
+weights or claim of biological behavior. Rest restores energy; low energy enters
+auto-rest; zero food never kills a pet. No timestamp-driven absence decay.
+
+Hatching/naming happens once. Existing v1 saves are treated as already hatched.
+Fresh eggs do not advance ticks. Player placement uses a keyboard-accessible range
+slider; it never changes pet position. Storage errors and contending tabs disable
+care mutations. Habitat modal pauses progression; scenery persists.
+
+Runtime atlases and manifest are loaded from same-origin static assets. Scene
+rendering uses logical 320px canvases and nearest-neighbor sampling; sprite
+workshop demonstrates integer scales. Physical DPR/viewport checks remain pending.
