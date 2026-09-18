@@ -1,0 +1,669 @@
+{
+  "complete": true,
+  "results": [
+    {
+      "experiment": "sugar",
+      "rate_hz": 0.0,
+      "seed": 7,
+      "model_mode": "full-pinned-network-offline-research",
+      "window_ms": 50.0,
+      "windows": [
+        {
+          "window": 0,
+          "wall_s_including_runtime_prepare": 1.0864191589998882,
+          "total_spikes": 0,
+          "downstream_spikes": 0,
+          "readout_spikes": {
+            "forward": 0,
+            "feeding": 0
+          },
+          "candidate_action": {
+            "speed": 0.0,
+            "turn": 0.0,
+            "interact": false
+          }
+        },
+        {
+          "window": 1,
+          "wall_s_including_runtime_prepare": 1.1554257440000129,
+          "total_spikes": 0,
+          "downstream_spikes": 0,
+          "readout_spikes": {
+            "forward": 0,
+            "feeding": 0
+          },
+          "candidate_action": {
+            "speed": 0.0,
+            "turn": 0.0,
+            "interact": false
+          }
+        },
+        {
+          "window": 2,
+          "wall_s_including_runtime_prepare": 1.1524236970001311,
+          "total_spikes": 0,
+          "downstream_spikes": 0,
+          "readout_spikes": {
+            "forward": 0,
+            "feeding": 0
+          },
+          "candidate_action": {
+            "speed": 0.0,
+            "turn": 0.0,
+            "interact": false
+          }
+        }
+      ],
+      "setup_s": 8.130952381000043,
+      "cold_window_s": 1.999509825000132,
+      "upstream_timings_s": {
+        "data_load": 4.404707459999827,
+        "neuron_creation": 0.04435752500012313,
+        "synapse_creation": 2.4751461860000745,
+        "network_creation_total": 6.926687583999865
+      },
+      "in_process_restore_exact": true,
+      "neurons": 138639,
+      "weighted_connection_rows": 15091983,
+      "peak_rss_mib": 2638.7890625,
+      "spike_counts_sha256": "82c552c9fcbde2dfc3dac3369eba2663bf27a29cb88aa6a1c8aab050e60495e8",
+      "upstream_commit": "a3db62f9436074e485c0278290c2164ed6150808",
+      "mapping_sha256": "f9077434ab356affe3f17a811275a0df5800e4813be6970218d81fd668c07c1b",
+      "python": "3.12.14",
+      "platform": "Linux-6.18.44-x86_64-with-glibc2.39",
+      "cpu_count": 9,
+      "packages": {
+        "brian2": "2.8.0",
+        "numpy": "2.3.5",
+        "pandas": "2.2.3",
+        "pyarrow": "19.0.1",
+        "sympy": "1.14.0",
+        "scipy": "1.17.0",
+        "joblib": "1.5.3"
+      }
+    },
+    {
+      "experiment": "sugar",
+      "rate_hz": 0.0,
+      "seed": 23,
+      "model_mode": "full-pinned-network-offline-research",
+      "window_ms": 50.0,
+      "windows": [
+        {
+          "window": 0,
+          "wall_s_including_runtime_prepare": 1.498615559999962,
+          "total_spikes": 0,
+          "downstream_spikes": 0,
+          "readout_spikes": {
+            "forward": 0,
+            "feeding": 0
+          },
+          "candidate_action": {
+            "speed": 0.0,
+            "turn": 0.0,
+            "interact": false
+          }
+        },
+        {
+          "window": 1,
+          "wall_s_including_runtime_prepare": 1.0978813500000797,
+          "total_spikes": 0,
+          "downstream_spikes": 0,
+          "readout_spikes": {
+            "forward": 0,
+            "feeding": 0
+          },
+          "candidate_action": {
+            "speed": 0.0,
+            "turn": 0.0,
+            "interact": false
+          }
+        },
+        {
+          "window": 2,
+          "wall_s_including_runtime_prepare": 0.9615905719999773,
+          "total_spikes": 0,
+          "downstream_spikes": 0,
+          "readout_spikes": {
+            "forward": 0,
+            "feeding": 0
+          },
+          "candidate_action": {
+            "speed": 0.0,
+            "turn": 0.0,
+            "interact": false
+          }
+        }
+      ],
+      "setup_s": 3.3999328530001094,
+      "cold_window_s": 1.133348278000085,
+      "upstream_timings_s": {
+        "data_load": 0.7123822070000188,
+        "neuron_creation": 0.01667847399994571,
+        "synapse_creation": 1.5380880510001589,
+        "network_creation_total": 2.2687927000001764
+      },
+      "in_process_restore_exact": true,
+      "neurons": 138639,
+      "weighted_connection_rows": 15091983,
+      "peak_rss_mib": 2634.7578125,
+      "spike_counts_sha256": "82c552c9fcbde2dfc3dac3369eba2663bf27a29cb88aa6a1c8aab050e60495e8",
+      "upstream_commit": "a3db62f9436074e485c0278290c2164ed6150808",
+      "mapping_sha256": "f9077434ab356affe3f17a811275a0df5800e4813be6970218d81fd668c07c1b",
+      "python": "3.12.14",
+      "platform": "Linux-6.18.44-x86_64-with-glibc2.39",
+      "cpu_count": 9,
+      "packages": {
+        "brian2": "2.8.0",
+        "numpy": "2.3.5",
+        "pandas": "2.2.3",
+        "pyarrow": "19.0.1",
+        "sympy": "1.14.0",
+        "scipy": "1.17.0",
+        "joblib": "1.5.3"
+      }
+    },
+    {
+      "experiment": "sugar",
+      "rate_hz": 200.0,
+      "seed": 7,
+      "model_mode": "full-pinned-network-offline-research",
+      "window_ms": 50.0,
+      "windows": [
+        {
+          "window": 0,
+          "wall_s_including_runtime_prepare": 2.565191367999887,
+          "total_spikes": 770,
+          "downstream_spikes": 587,
+          "readout_spikes": {
+            "forward": 0,
+            "feeding": 8
+          },
+          "candidate_action": {
+            "speed": 0.0,
+            "turn": 0.0,
+            "interact": true
+          }
+        },
+        {
+          "window": 1,
+          "wall_s_including_runtime_prepare": 1.075728773000037,
+          "total_spikes": 897,
+          "downstream_spikes": 706,
+          "readout_spikes": {
+            "forward": 0,
+            "feeding": 6
+          },
+          "candidate_action": {
+            "speed": 0.0,
+            "turn": 0.0,
+            "interact": true
+          }
+        },
+        {
+          "window": 2,
+          "wall_s_including_runtime_prepare": 1.0134293099999923,
+          "total_spikes": 860,
+          "downstream_spikes": 657,
+          "readout_spikes": {
+            "forward": 0,
+            "feeding": 7
+          },
+          "candidate_action": {
+            "speed": 0.0,
+            "turn": 0.0,
+            "interact": true
+          }
+        }
+      ],
+      "setup_s": 4.144409974000155,
+      "cold_window_s": 1.2239194759999918,
+      "upstream_timings_s": {
+        "data_load": 1.2093052580000858,
+        "neuron_creation": 0.021679872000049727,
+        "synapse_creation": 1.511070798999981,
+        "network_creation_total": 2.74387394900009
+      },
+      "in_process_restore_exact": true,
+      "neurons": 138639,
+      "weighted_connection_rows": 15091983,
+      "peak_rss_mib": 2639.2109375,
+      "spike_counts_sha256": "f4eb1bf416043ae6af1e5c9641061f14428dfeeed7ee941bd75e7c9d5cc3a050",
+      "upstream_commit": "a3db62f9436074e485c0278290c2164ed6150808",
+      "mapping_sha256": "f9077434ab356affe3f17a811275a0df5800e4813be6970218d81fd668c07c1b",
+      "python": "3.12.14",
+      "platform": "Linux-6.18.44-x86_64-with-glibc2.39",
+      "cpu_count": 9,
+      "packages": {
+        "brian2": "2.8.0",
+        "numpy": "2.3.5",
+        "pandas": "2.2.3",
+        "pyarrow": "19.0.1",
+        "sympy": "1.14.0",
+        "scipy": "1.17.0",
+        "joblib": "1.5.3"
+      }
+    },
+    {
+      "experiment": "sugar",
+      "rate_hz": 200.0,
+      "seed": 23,
+      "model_mode": "full-pinned-network-offline-research",
+      "window_ms": 50.0,
+      "windows": [
+        {
+          "window": 0,
+          "wall_s_including_runtime_prepare": 1.0450135840001167,
+          "total_spikes": 816,
+          "downstream_spikes": 606,
+          "readout_spikes": {
+            "forward": 0,
+            "feeding": 7
+          },
+          "candidate_action": {
+            "speed": 0.0,
+            "turn": 0.0,
+            "interact": true
+          }
+        },
+        {
+          "window": 1,
+          "wall_s_including_runtime_prepare": 1.1211930709998796,
+          "total_spikes": 836,
+          "downstream_spikes": 630,
+          "readout_spikes": {
+            "forward": 0,
+            "feeding": 7
+          },
+          "candidate_action": {
+            "speed": 0.0,
+            "turn": 0.0,
+            "interact": true
+          }
+        },
+        {
+          "window": 2,
+          "wall_s_including_runtime_prepare": 1.1686084210000445,
+          "total_spikes": 759,
+          "downstream_spikes": 571,
+          "readout_spikes": {
+            "forward": 0,
+            "feeding": 5
+          },
+          "candidate_action": {
+            "speed": 0.0,
+            "turn": 0.0,
+            "interact": true
+          }
+        }
+      ],
+      "setup_s": 3.0960644930000853,
+      "cold_window_s": 1.7880915440000535,
+      "upstream_timings_s": {
+        "data_load": 0.5038218709999001,
+        "neuron_creation": 0.00935065199996643,
+        "synapse_creation": 1.5003619509998316,
+        "network_creation_total": 2.015417270000171
+      },
+      "in_process_restore_exact": true,
+      "neurons": 138639,
+      "weighted_connection_rows": 15091983,
+      "peak_rss_mib": 2642.01171875,
+      "spike_counts_sha256": "a2747e0b0471cafb77d7fd62c9c734d71aed770bc3933182e6a6fc3084c641f4",
+      "upstream_commit": "a3db62f9436074e485c0278290c2164ed6150808",
+      "mapping_sha256": "f9077434ab356affe3f17a811275a0df5800e4813be6970218d81fd668c07c1b",
+      "python": "3.12.14",
+      "platform": "Linux-6.18.44-x86_64-with-glibc2.39",
+      "cpu_count": 9,
+      "packages": {
+        "brian2": "2.8.0",
+        "numpy": "2.3.5",
+        "pandas": "2.2.3",
+        "pyarrow": "19.0.1",
+        "sympy": "1.14.0",
+        "scipy": "1.17.0",
+        "joblib": "1.5.3"
+      }
+    },
+    {
+      "experiment": "p9",
+      "rate_hz": 0.0,
+      "seed": 7,
+      "model_mode": "full-pinned-network-offline-research",
+      "backend": "numpy",
+      "window_ms": 50.0,
+      "windows": [
+        {
+          "window": 0,
+          "wall_s_including_runtime_prepare": 10.782763584000122,
+          "total_spikes": 0,
+          "downstream_spikes": 0,
+          "readout_spikes": {
+            "forward": 0,
+            "feeding": 0
+          },
+          "candidate_action": {
+            "speed": 0.0,
+            "turn": 0.0,
+            "interact": false
+          }
+        },
+        {
+          "window": 1,
+          "wall_s_including_runtime_prepare": 11.26516351600003,
+          "total_spikes": 0,
+          "downstream_spikes": 0,
+          "readout_spikes": {
+            "forward": 0,
+            "feeding": 0
+          },
+          "candidate_action": {
+            "speed": 0.0,
+            "turn": 0.0,
+            "interact": false
+          }
+        },
+        {
+          "window": 2,
+          "wall_s_including_runtime_prepare": 1.5907689069999833,
+          "total_spikes": 0,
+          "downstream_spikes": 0,
+          "readout_spikes": {
+            "forward": 0,
+            "feeding": 0
+          },
+          "candidate_action": {
+            "speed": 0.0,
+            "turn": 0.0,
+            "interact": false
+          }
+        }
+      ],
+      "setup_s": 3.0188038250000773,
+      "cold_window_s": 1.0646742490000634,
+      "upstream_timings_s": {
+        "data_load": 0.4778584979999323,
+        "neuron_creation": 0.018210963000001357,
+        "synapse_creation": 1.461699759999874,
+        "network_creation_total": 1.9611894140000459
+      },
+      "in_process_restore_exact": true,
+      "neurons": 138639,
+      "weighted_connection_rows": 15091983,
+      "peak_rss_mib": 2638.8125,
+      "spike_counts_sha256": "82c552c9fcbde2dfc3dac3369eba2663bf27a29cb88aa6a1c8aab050e60495e8",
+      "upstream_commit": "a3db62f9436074e485c0278290c2164ed6150808",
+      "mapping_sha256": "f9077434ab356affe3f17a811275a0df5800e4813be6970218d81fd668c07c1b",
+      "python": "3.12.14",
+      "platform": "Linux-6.18.44-x86_64-with-glibc2.39",
+      "cpu_count": 9,
+      "packages": {
+        "brian2": "2.8.0",
+        "numpy": "2.3.5",
+        "pandas": "2.2.3",
+        "pyarrow": "19.0.1",
+        "sympy": "1.14.0",
+        "scipy": "1.17.0",
+        "joblib": "1.5.3"
+      }
+    },
+    {
+      "experiment": "p9",
+      "rate_hz": 0.0,
+      "seed": 23,
+      "model_mode": "full-pinned-network-offline-research",
+      "backend": "numpy",
+      "feedback_enabled": false,
+      "window_ms": 50.0,
+      "windows": [
+        {
+          "window": 0,
+          "wall_s_including_runtime_prepare": 1.0471165809999547,
+          "total_spikes": 0,
+          "downstream_spikes": 0,
+          "readout_spikes": {
+            "forward": 0,
+            "feeding": 0
+          },
+          "candidate_action": {
+            "speed": 0.0,
+            "turn": 0.0,
+            "interact": false
+          },
+          "feedback": null
+        },
+        {
+          "window": 1,
+          "wall_s_including_runtime_prepare": 0.8135770530000173,
+          "total_spikes": 0,
+          "downstream_spikes": 0,
+          "readout_spikes": {
+            "forward": 0,
+            "feeding": 0
+          },
+          "candidate_action": {
+            "speed": 0.0,
+            "turn": 0.0,
+            "interact": false
+          },
+          "feedback": null
+        },
+        {
+          "window": 2,
+          "wall_s_including_runtime_prepare": 0.9691412910001418,
+          "total_spikes": 0,
+          "downstream_spikes": 0,
+          "readout_spikes": {
+            "forward": 0,
+            "feeding": 0
+          },
+          "candidate_action": {
+            "speed": 0.0,
+            "turn": 0.0,
+            "interact": false
+          },
+          "feedback": null
+        }
+      ],
+      "setup_s": 4.026197034000006,
+      "cold_window_s": 1.064585782999984,
+      "upstream_timings_s": {
+        "data_load": 0.9990058439998393,
+        "neuron_creation": 0.015916637000145784,
+        "synapse_creation": 1.5847906100000273,
+        "network_creation_total": 2.6015830290000395
+      },
+      "in_process_restore_exact": true,
+      "neurons": 138639,
+      "weighted_connection_rows": 15091983,
+      "peak_rss_mib": 2641.8671875,
+      "spike_counts_sha256": "82c552c9fcbde2dfc3dac3369eba2663bf27a29cb88aa6a1c8aab050e60495e8",
+      "upstream_commit": "a3db62f9436074e485c0278290c2164ed6150808",
+      "mapping_sha256": "f9077434ab356affe3f17a811275a0df5800e4813be6970218d81fd668c07c1b",
+      "python": "3.12.14",
+      "platform": "Linux-6.18.44-x86_64-with-glibc2.39",
+      "cpu_count": 9,
+      "packages": {
+        "brian2": "2.8.0",
+        "numpy": "2.3.5",
+        "pandas": "2.2.3",
+        "pyarrow": "19.0.1",
+        "sympy": "1.14.0",
+        "scipy": "1.17.0",
+        "joblib": "1.5.3"
+      }
+    },
+    {
+      "experiment": "p9",
+      "rate_hz": 100.0,
+      "seed": 7,
+      "model_mode": "full-pinned-network-offline-research",
+      "backend": "numpy",
+      "feedback_enabled": false,
+      "window_ms": 50.0,
+      "windows": [
+        {
+          "window": 0,
+          "wall_s_including_runtime_prepare": 1.0468057749999389,
+          "total_spikes": 38,
+          "downstream_spikes": 29,
+          "readout_spikes": {
+            "forward": 1,
+            "feeding": 0
+          },
+          "candidate_action": {
+            "speed": 0.1,
+            "turn": 0.0,
+            "interact": false
+          },
+          "feedback": null
+        },
+        {
+          "window": 1,
+          "wall_s_including_runtime_prepare": 0.8409866090000833,
+          "total_spikes": 32,
+          "downstream_spikes": 19,
+          "readout_spikes": {
+            "forward": 2,
+            "feeding": 0
+          },
+          "candidate_action": {
+            "speed": 0.2,
+            "turn": 0.0,
+            "interact": false
+          },
+          "feedback": null
+        },
+        {
+          "window": 2,
+          "wall_s_including_runtime_prepare": 1.0096208320001097,
+          "total_spikes": 26,
+          "downstream_spikes": 18,
+          "readout_spikes": {
+            "forward": 1,
+            "feeding": 0
+          },
+          "candidate_action": {
+            "speed": 0.1,
+            "turn": 0.0,
+            "interact": false
+          },
+          "feedback": null
+        }
+      ],
+      "setup_s": 4.147633168000084,
+      "cold_window_s": 1.0416251389999616,
+      "upstream_timings_s": {
+        "data_load": 1.1701453079999737,
+        "neuron_creation": 0.015720619999910923,
+        "synapse_creation": 1.5003014690000782,
+        "network_creation_total": 2.6877258870001697
+      },
+      "in_process_restore_exact": true,
+      "neurons": 138639,
+      "weighted_connection_rows": 15091983,
+      "peak_rss_mib": 2638.09375,
+      "spike_counts_sha256": "f6a6af7a1f9173437a37e9a87e90342f3025ad80f0a06b7a837269399e137078",
+      "upstream_commit": "a3db62f9436074e485c0278290c2164ed6150808",
+      "mapping_sha256": "f9077434ab356affe3f17a811275a0df5800e4813be6970218d81fd668c07c1b",
+      "python": "3.12.14",
+      "platform": "Linux-6.18.44-x86_64-with-glibc2.39",
+      "cpu_count": 9,
+      "packages": {
+        "brian2": "2.8.0",
+        "numpy": "2.3.5",
+        "pandas": "2.2.3",
+        "pyarrow": "19.0.1",
+        "sympy": "1.14.0",
+        "scipy": "1.17.0",
+        "joblib": "1.5.3"
+      }
+    },
+    {
+      "experiment": "p9",
+      "rate_hz": 100.0,
+      "seed": 23,
+      "model_mode": "full-pinned-network-offline-research",
+      "backend": "numpy",
+      "feedback_enabled": false,
+      "window_ms": 50.0,
+      "windows": [
+        {
+          "window": 0,
+          "wall_s_including_runtime_prepare": 0.9218903700000283,
+          "total_spikes": 24,
+          "downstream_spikes": 17,
+          "readout_spikes": {
+            "forward": 1,
+            "feeding": 0
+          },
+          "candidate_action": {
+            "speed": 0.1,
+            "turn": 0.0,
+            "interact": false
+          },
+          "feedback": null
+        },
+        {
+          "window": 1,
+          "wall_s_including_runtime_prepare": 0.8539071149998563,
+          "total_spikes": 22,
+          "downstream_spikes": 16,
+          "readout_spikes": {
+            "forward": 1,
+            "feeding": 0
+          },
+          "candidate_action": {
+            "speed": 0.1,
+            "turn": 0.0,
+            "interact": false
+          },
+          "feedback": null
+        },
+        {
+          "window": 2,
+          "wall_s_including_runtime_prepare": 1.009348553000109,
+          "total_spikes": 27,
+          "downstream_spikes": 19,
+          "readout_spikes": {
+            "forward": 1,
+            "feeding": 0
+          },
+          "candidate_action": {
+            "speed": 0.1,
+            "turn": 0.0,
+            "interact": false
+          },
+          "feedback": null
+        }
+      ],
+      "setup_s": 3.1205956649998825,
+      "cold_window_s": 1.6396118289999322,
+      "upstream_timings_s": {
+        "data_load": 0.6829919550000341,
+        "neuron_creation": 0.015771096999969814,
+        "synapse_creation": 1.310504260000016,
+        "network_creation_total": 2.01079682600016
+      },
+      "in_process_restore_exact": true,
+      "neurons": 138639,
+      "weighted_connection_rows": 15091983,
+      "peak_rss_mib": 2637.921875,
+      "spike_counts_sha256": "3d4a850153056b9bdc4a2c8613b4ffaca99412b30d286bd1e5afe6e105406526",
+      "upstream_commit": "a3db62f9436074e485c0278290c2164ed6150808",
+      "mapping_sha256": "f9077434ab356affe3f17a811275a0df5800e4813be6970218d81fd668c07c1b",
+      "python": "3.12.14",
+      "platform": "Linux-6.18.44-x86_64-with-glibc2.39",
+      "cpu_count": 9,
+      "packages": {
+        "brian2": "2.8.0",
+        "numpy": "2.3.5",
+        "pandas": "2.2.3",
+        "pyarrow": "19.0.1",
+        "sympy": "1.14.0",
+        "scipy": "1.17.0",
+        "joblib": "1.5.3"
+      }
+    }
+  ]
+}

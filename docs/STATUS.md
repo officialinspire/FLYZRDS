@@ -79,3 +79,32 @@ build), python scripts/verify-assets.py (32 sprites, bounds and hashes), and
 python -m unittest discover -s services/brain -p 'test_*.py' (1 test) passed.
 No neural-service acceptance or physical-device checks are claimed.
 Next: resolve the research gate before implementing Prompt 05 or Prompt 06.
+
+## Neural training preparation — 2026-09-18
+
+- Downloaded and checksum-verified the pinned full FAFB v783-derived network.
+  Data and Python environments stay ignored under research/.
+- Added services/brain/readiness.py, readout-mapping.json, a separate
+  requirements-compiled.txt profile, training-protocol.json and test_readiness.py.
+  The mapping pins and verifies the upstream example notebook; downstream outputs
+  exclude directly stimulated neurons and actions are bounded with no steering
+  inferred from bilateral names. No adapter/connectome parameters were trained.
+- Ran 8 full-network NumPy intervention/control conditions (sugar/P9, seeds 7/23),
+  4 NumPy food-feedback conditions and 8 compiled-profile conditions. All 20 pass
+  exact in-process neural state replay. Food consumption disables subsequent
+  sensory drive; controls remain inactive. All 8 final full spike-count hashes
+  agree across NumPy/compiled profiles for the short tested conditions.
+- Both CPU profiles remain too slow for 20Hz. See NEURAL-TRAINING-READINESS.md
+  and three small neural-*.json reports for actual repeated-window timing,
+  readout counts, traces, dependency versions, failures/workarounds and limits.
+- README.md, BRAIN-FEASIBILITY.md and PROMPT-05-GATE.md link the new evidence.
+  Offline feeding feedback is not an online service; in-process replay is not
+  restart/reconnect acceptance. Prompt 05/06 remain incomplete.
+- Verification: npm ci && npm run check passed (31 tests, typecheck, Biome,
+  production build); python -m unittest discover -s services/brain -p 'test_*.py'
+  passed (5 tests); python scripts/verify-assets.py passed (32 sprites and hashes).
+  Physical-device checks and full online end-to-end latency remain untested.
+- Next: assess an optimized backend's interactive state/control boundary;
+  validate cue/navigation mappings, local authoritative sessions and persistent
+  neural/world/RNG restoration, then run the predeclared adapter training protocol.
+  Code/data usage decisions remain open before a public/commercial release.

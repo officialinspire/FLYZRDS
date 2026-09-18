@@ -1,0 +1,397 @@
+{
+  "complete": true,
+  "results": [
+    {
+      "experiment": "sugar",
+      "rate_hz": 0.0,
+      "seed": 7,
+      "model_mode": "full-pinned-network-offline-research",
+      "backend": "numpy",
+      "feedback_enabled": true,
+      "window_ms": 50.0,
+      "windows": [
+        {
+          "window": 0,
+          "wall_s_including_runtime_prepare": 1.1737081009998747,
+          "total_spikes": 0,
+          "downstream_spikes": 0,
+          "readout_spikes": {
+            "forward": 0,
+            "feeding": 0
+          },
+          "candidate_action": {
+            "speed": 0.0,
+            "turn": 0.0,
+            "interact": false
+          },
+          "feedback": {
+            "food_before": true,
+            "applied_rate_hz": 0.0,
+            "food_after": true
+          }
+        },
+        {
+          "window": 1,
+          "wall_s_including_runtime_prepare": 0.9803331739999521,
+          "total_spikes": 0,
+          "downstream_spikes": 0,
+          "readout_spikes": {
+            "forward": 0,
+            "feeding": 0
+          },
+          "candidate_action": {
+            "speed": 0.0,
+            "turn": 0.0,
+            "interact": false
+          },
+          "feedback": {
+            "food_before": true,
+            "applied_rate_hz": 0.0,
+            "food_after": true
+          }
+        },
+        {
+          "window": 2,
+          "wall_s_including_runtime_prepare": 1.122192552000115,
+          "total_spikes": 0,
+          "downstream_spikes": 0,
+          "readout_spikes": {
+            "forward": 0,
+            "feeding": 0
+          },
+          "candidate_action": {
+            "speed": 0.0,
+            "turn": 0.0,
+            "interact": false
+          },
+          "feedback": {
+            "food_before": true,
+            "applied_rate_hz": 0.0,
+            "food_after": true
+          }
+        }
+      ],
+      "setup_s": 3.971986139999899,
+      "cold_window_s": 1.1072982420000699,
+      "upstream_timings_s": {
+        "data_load": 1.1701842380000471,
+        "neuron_creation": 0.015464565999991464,
+        "synapse_creation": 1.5367182920001596,
+        "network_creation_total": 2.7239198150000448
+      },
+      "in_process_restore_exact": true,
+      "neurons": 138639,
+      "weighted_connection_rows": 15091983,
+      "peak_rss_mib": 2629.87109375,
+      "spike_counts_sha256": "82c552c9fcbde2dfc3dac3369eba2663bf27a29cb88aa6a1c8aab050e60495e8",
+      "upstream_commit": "a3db62f9436074e485c0278290c2164ed6150808",
+      "mapping_sha256": "f9077434ab356affe3f17a811275a0df5800e4813be6970218d81fd668c07c1b",
+      "python": "3.12.14",
+      "platform": "Linux-6.18.44-x86_64-with-glibc2.39",
+      "cpu_count": 9,
+      "packages": {
+        "brian2": "2.8.0",
+        "numpy": "2.3.5",
+        "pandas": "2.2.3",
+        "pyarrow": "19.0.1",
+        "sympy": "1.14.0",
+        "scipy": "1.17.0",
+        "joblib": "1.5.3"
+      }
+    },
+    {
+      "experiment": "sugar",
+      "rate_hz": 0.0,
+      "seed": 23,
+      "model_mode": "full-pinned-network-offline-research",
+      "backend": "numpy",
+      "feedback_enabled": true,
+      "window_ms": 50.0,
+      "windows": [
+        {
+          "window": 0,
+          "wall_s_including_runtime_prepare": 1.0263696780000373,
+          "total_spikes": 0,
+          "downstream_spikes": 0,
+          "readout_spikes": {
+            "forward": 0,
+            "feeding": 0
+          },
+          "candidate_action": {
+            "speed": 0.0,
+            "turn": 0.0,
+            "interact": false
+          },
+          "feedback": {
+            "food_before": true,
+            "applied_rate_hz": 0.0,
+            "food_after": true
+          }
+        },
+        {
+          "window": 1,
+          "wall_s_including_runtime_prepare": 1.1109759290000056,
+          "total_spikes": 0,
+          "downstream_spikes": 0,
+          "readout_spikes": {
+            "forward": 0,
+            "feeding": 0
+          },
+          "candidate_action": {
+            "speed": 0.0,
+            "turn": 0.0,
+            "interact": false
+          },
+          "feedback": {
+            "food_before": true,
+            "applied_rate_hz": 0.0,
+            "food_after": true
+          }
+        },
+        {
+          "window": 2,
+          "wall_s_including_runtime_prepare": 1.0459869060000528,
+          "total_spikes": 0,
+          "downstream_spikes": 0,
+          "readout_spikes": {
+            "forward": 0,
+            "feeding": 0
+          },
+          "candidate_action": {
+            "speed": 0.0,
+            "turn": 0.0,
+            "interact": false
+          },
+          "feedback": {
+            "food_before": true,
+            "applied_rate_hz": 0.0,
+            "food_after": true
+          }
+        }
+      ],
+      "setup_s": 4.255310249999866,
+      "cold_window_s": 1.4994557269999405,
+      "upstream_timings_s": {
+        "data_load": 1.185084518000167,
+        "neuron_creation": 0.017671680999910677,
+        "synapse_creation": 1.6389103059998433,
+        "network_creation_total": 2.8432140780000736
+      },
+      "in_process_restore_exact": true,
+      "neurons": 138639,
+      "weighted_connection_rows": 15091983,
+      "peak_rss_mib": 2640.24609375,
+      "spike_counts_sha256": "82c552c9fcbde2dfc3dac3369eba2663bf27a29cb88aa6a1c8aab050e60495e8",
+      "upstream_commit": "a3db62f9436074e485c0278290c2164ed6150808",
+      "mapping_sha256": "f9077434ab356affe3f17a811275a0df5800e4813be6970218d81fd668c07c1b",
+      "python": "3.12.14",
+      "platform": "Linux-6.18.44-x86_64-with-glibc2.39",
+      "cpu_count": 9,
+      "packages": {
+        "brian2": "2.8.0",
+        "numpy": "2.3.5",
+        "pandas": "2.2.3",
+        "pyarrow": "19.0.1",
+        "sympy": "1.14.0",
+        "scipy": "1.17.0",
+        "joblib": "1.5.3"
+      }
+    },
+    {
+      "experiment": "sugar",
+      "rate_hz": 200.0,
+      "seed": 7,
+      "model_mode": "full-pinned-network-offline-research",
+      "backend": "numpy",
+      "feedback_enabled": true,
+      "window_ms": 50.0,
+      "windows": [
+        {
+          "window": 0,
+          "wall_s_including_runtime_prepare": 1.096692565000012,
+          "total_spikes": 770,
+          "downstream_spikes": 587,
+          "readout_spikes": {
+            "forward": 0,
+            "feeding": 8
+          },
+          "candidate_action": {
+            "speed": 0.0,
+            "turn": 0.0,
+            "interact": true
+          },
+          "feedback": {
+            "food_before": true,
+            "applied_rate_hz": 200.0,
+            "food_after": false
+          }
+        },
+        {
+          "window": 1,
+          "wall_s_including_runtime_prepare": 0.9394699889999174,
+          "total_spikes": 240,
+          "downstream_spikes": 240,
+          "readout_spikes": {
+            "forward": 0,
+            "feeding": 3
+          },
+          "candidate_action": {
+            "speed": 0.0,
+            "turn": 0.0,
+            "interact": true
+          },
+          "feedback": {
+            "food_before": false,
+            "applied_rate_hz": 0,
+            "food_after": false
+          }
+        },
+        {
+          "window": 2,
+          "wall_s_including_runtime_prepare": 0.8304986680000184,
+          "total_spikes": 2,
+          "downstream_spikes": 2,
+          "readout_spikes": {
+            "forward": 0,
+            "feeding": 0
+          },
+          "candidate_action": {
+            "speed": 0.0,
+            "turn": 0.0,
+            "interact": false
+          },
+          "feedback": {
+            "food_before": false,
+            "applied_rate_hz": 0,
+            "food_after": false
+          }
+        }
+      ],
+      "setup_s": 3.254588752000018,
+      "cold_window_s": 1.5424867360000007,
+      "upstream_timings_s": {
+        "data_load": 0.5910375880000629,
+        "neuron_creation": 0.017840466000052402,
+        "synapse_creation": 1.5379561029999422,
+        "network_creation_total": 2.14844202900008
+      },
+      "in_process_restore_exact": true,
+      "neurons": 138639,
+      "weighted_connection_rows": 15091983,
+      "peak_rss_mib": 2642.41015625,
+      "spike_counts_sha256": "8e29c2a409016d6f71c68709d934e3876c641193587699ce94672a9ba7963278",
+      "upstream_commit": "a3db62f9436074e485c0278290c2164ed6150808",
+      "mapping_sha256": "f9077434ab356affe3f17a811275a0df5800e4813be6970218d81fd668c07c1b",
+      "python": "3.12.14",
+      "platform": "Linux-6.18.44-x86_64-with-glibc2.39",
+      "cpu_count": 9,
+      "packages": {
+        "brian2": "2.8.0",
+        "numpy": "2.3.5",
+        "pandas": "2.2.3",
+        "pyarrow": "19.0.1",
+        "sympy": "1.14.0",
+        "scipy": "1.17.0",
+        "joblib": "1.5.3"
+      }
+    },
+    {
+      "experiment": "sugar",
+      "rate_hz": 200.0,
+      "seed": 23,
+      "model_mode": "full-pinned-network-offline-research",
+      "backend": "numpy",
+      "feedback_enabled": true,
+      "window_ms": 50.0,
+      "windows": [
+        {
+          "window": 0,
+          "wall_s_including_runtime_prepare": 1.0375796309999714,
+          "total_spikes": 816,
+          "downstream_spikes": 606,
+          "readout_spikes": {
+            "forward": 0,
+            "feeding": 7
+          },
+          "candidate_action": {
+            "speed": 0.0,
+            "turn": 0.0,
+            "interact": true
+          },
+          "feedback": {
+            "food_before": true,
+            "applied_rate_hz": 200.0,
+            "food_after": false
+          }
+        },
+        {
+          "window": 1,
+          "wall_s_including_runtime_prepare": 0.933585020999999,
+          "total_spikes": 248,
+          "downstream_spikes": 247,
+          "readout_spikes": {
+            "forward": 0,
+            "feeding": 2
+          },
+          "candidate_action": {
+            "speed": 0.0,
+            "turn": 0.0,
+            "interact": true
+          },
+          "feedback": {
+            "food_before": false,
+            "applied_rate_hz": 0,
+            "food_after": false
+          }
+        },
+        {
+          "window": 2,
+          "wall_s_including_runtime_prepare": 0.908842328999981,
+          "total_spikes": 0,
+          "downstream_spikes": 0,
+          "readout_spikes": {
+            "forward": 0,
+            "feeding": 0
+          },
+          "candidate_action": {
+            "speed": 0.0,
+            "turn": 0.0,
+            "interact": false
+          },
+          "feedback": {
+            "food_before": false,
+            "applied_rate_hz": 0,
+            "food_after": false
+          }
+        }
+      ],
+      "setup_s": 2.7370070790000227,
+      "cold_window_s": 1.6495988289998422,
+      "upstream_timings_s": {
+        "data_load": 0.2820535769999424,
+        "neuron_creation": 0.008675814000071114,
+        "synapse_creation": 1.3446764539999094,
+        "network_creation_total": 1.6368831610000143
+      },
+      "in_process_restore_exact": true,
+      "neurons": 138639,
+      "weighted_connection_rows": 15091983,
+      "peak_rss_mib": 2637.0234375,
+      "spike_counts_sha256": "81bbfe6f22db3fbb0b8034f236363accf2e3f3793d01904f73a576ef037bea30",
+      "upstream_commit": "a3db62f9436074e485c0278290c2164ed6150808",
+      "mapping_sha256": "f9077434ab356affe3f17a811275a0df5800e4813be6970218d81fd668c07c1b",
+      "python": "3.12.14",
+      "platform": "Linux-6.18.44-x86_64-with-glibc2.39",
+      "cpu_count": 9,
+      "packages": {
+        "brian2": "2.8.0",
+        "numpy": "2.3.5",
+        "pandas": "2.2.3",
+        "pyarrow": "19.0.1",
+        "sympy": "1.14.0",
+        "scipy": "1.17.0",
+        "joblib": "1.5.3"
+      }
+    }
+  ]
+}

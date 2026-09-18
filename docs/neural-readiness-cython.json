@@ -1,0 +1,693 @@
+{
+  "complete": true,
+  "results": [
+    {
+      "experiment": "sugar",
+      "rate_hz": 0.0,
+      "seed": 7,
+      "model_mode": "full-pinned-network-offline-research",
+      "backend": "cython",
+      "feedback_enabled": false,
+      "window_ms": 50.0,
+      "windows": [
+        {
+          "window": 0,
+          "wall_s_including_runtime_prepare": 0.7876668070000505,
+          "total_spikes": 0,
+          "downstream_spikes": 0,
+          "readout_spikes": {
+            "forward": 0,
+            "feeding": 0
+          },
+          "candidate_action": {
+            "speed": 0.0,
+            "turn": 0.0,
+            "interact": false
+          },
+          "feedback": null
+        },
+        {
+          "window": 1,
+          "wall_s_including_runtime_prepare": 0.7515770850000081,
+          "total_spikes": 0,
+          "downstream_spikes": 0,
+          "readout_spikes": {
+            "forward": 0,
+            "feeding": 0
+          },
+          "candidate_action": {
+            "speed": 0.0,
+            "turn": 0.0,
+            "interact": false
+          },
+          "feedback": null
+        },
+        {
+          "window": 2,
+          "wall_s_including_runtime_prepare": 0.7686693969999396,
+          "total_spikes": 0,
+          "downstream_spikes": 0,
+          "readout_spikes": {
+            "forward": 0,
+            "feeding": 0
+          },
+          "candidate_action": {
+            "speed": 0.0,
+            "turn": 0.0,
+            "interact": false
+          },
+          "feedback": null
+        }
+      ],
+      "setup_s": 10.67259500099999,
+      "cold_window_s": 65.99213390299997,
+      "upstream_timings_s": {
+        "data_load": 0.986757986000157,
+        "neuron_creation": 0.021810268000081123,
+        "synapse_creation": 8.552652350000017,
+        "network_creation_total": 9.562759424999967
+      },
+      "in_process_restore_exact": true,
+      "neurons": 138639,
+      "weighted_connection_rows": 15091983,
+      "peak_rss_mib": 2753.0078125,
+      "spike_counts_sha256": "82c552c9fcbde2dfc3dac3369eba2663bf27a29cb88aa6a1c8aab050e60495e8",
+      "upstream_commit": "a3db62f9436074e485c0278290c2164ed6150808",
+      "mapping_sha256": "f9077434ab356affe3f17a811275a0df5800e4813be6970218d81fd668c07c1b",
+      "python": "3.12.14",
+      "platform": "Linux-6.18.44-x86_64-with-glibc2.39",
+      "cpu_count": 9,
+      "packages": {
+        "brian2": "2.8.0",
+        "numpy": "1.26.4",
+        "pandas": "2.2.3",
+        "pyarrow": "19.0.1",
+        "sympy": "1.14.0",
+        "scipy": "1.17.0",
+        "joblib": "1.5.3"
+      }
+    },
+    {
+      "experiment": "sugar",
+      "rate_hz": 0.0,
+      "seed": 23,
+      "model_mode": "full-pinned-network-offline-research",
+      "backend": "cython",
+      "feedback_enabled": false,
+      "window_ms": 50.0,
+      "windows": [
+        {
+          "window": 0,
+          "wall_s_including_runtime_prepare": 0.38426579199995103,
+          "total_spikes": 0,
+          "downstream_spikes": 0,
+          "readout_spikes": {
+            "forward": 0,
+            "feeding": 0
+          },
+          "candidate_action": {
+            "speed": 0.0,
+            "turn": 0.0,
+            "interact": false
+          },
+          "feedback": null
+        },
+        {
+          "window": 1,
+          "wall_s_including_runtime_prepare": 0.5143775379999624,
+          "total_spikes": 0,
+          "downstream_spikes": 0,
+          "readout_spikes": {
+            "forward": 0,
+            "feeding": 0
+          },
+          "candidate_action": {
+            "speed": 0.0,
+            "turn": 0.0,
+            "interact": false
+          },
+          "feedback": null
+        },
+        {
+          "window": 2,
+          "wall_s_including_runtime_prepare": 0.4138778970000203,
+          "total_spikes": 0,
+          "downstream_spikes": 0,
+          "readout_spikes": {
+            "forward": 0,
+            "feeding": 0
+          },
+          "candidate_action": {
+            "speed": 0.0,
+            "turn": 0.0,
+            "interact": false
+          },
+          "feedback": null
+        }
+      ],
+      "setup_s": 3.50903095700005,
+      "cold_window_s": 0.5984587770001326,
+      "upstream_timings_s": {
+        "data_load": 0.6032899219999308,
+        "neuron_creation": 0.015726469000128418,
+        "synapse_creation": 1.7635469599999851,
+        "network_creation_total": 2.3845438649998414
+      },
+      "in_process_restore_exact": true,
+      "neurons": 138639,
+      "weighted_connection_rows": 15091983,
+      "peak_rss_mib": 2647.34765625,
+      "spike_counts_sha256": "82c552c9fcbde2dfc3dac3369eba2663bf27a29cb88aa6a1c8aab050e60495e8",
+      "upstream_commit": "a3db62f9436074e485c0278290c2164ed6150808",
+      "mapping_sha256": "f9077434ab356affe3f17a811275a0df5800e4813be6970218d81fd668c07c1b",
+      "python": "3.12.14",
+      "platform": "Linux-6.18.44-x86_64-with-glibc2.39",
+      "cpu_count": 9,
+      "packages": {
+        "brian2": "2.8.0",
+        "numpy": "1.26.4",
+        "pandas": "2.2.3",
+        "pyarrow": "19.0.1",
+        "sympy": "1.14.0",
+        "scipy": "1.17.0",
+        "joblib": "1.5.3"
+      }
+    },
+    {
+      "experiment": "sugar",
+      "rate_hz": 200.0,
+      "seed": 7,
+      "model_mode": "full-pinned-network-offline-research",
+      "backend": "cython",
+      "feedback_enabled": false,
+      "window_ms": 50.0,
+      "windows": [
+        {
+          "window": 0,
+          "wall_s_including_runtime_prepare": 0.6933734439999171,
+          "total_spikes": 770,
+          "downstream_spikes": 587,
+          "readout_spikes": {
+            "forward": 0,
+            "feeding": 8
+          },
+          "candidate_action": {
+            "speed": 0.0,
+            "turn": 0.0,
+            "interact": true
+          },
+          "feedback": null
+        },
+        {
+          "window": 1,
+          "wall_s_including_runtime_prepare": 0.6568952579998495,
+          "total_spikes": 897,
+          "downstream_spikes": 706,
+          "readout_spikes": {
+            "forward": 0,
+            "feeding": 6
+          },
+          "candidate_action": {
+            "speed": 0.0,
+            "turn": 0.0,
+            "interact": true
+          },
+          "feedback": null
+        },
+        {
+          "window": 2,
+          "wall_s_including_runtime_prepare": 0.7632905289999599,
+          "total_spikes": 860,
+          "downstream_spikes": 657,
+          "readout_spikes": {
+            "forward": 0,
+            "feeding": 7
+          },
+          "candidate_action": {
+            "speed": 0.0,
+            "turn": 0.0,
+            "interact": true
+          },
+          "feedback": null
+        }
+      ],
+      "setup_s": 3.0759822089999034,
+      "cold_window_s": 38.28877294400013,
+      "upstream_timings_s": {
+        "data_load": 0.4960934839998572,
+        "neuron_creation": 0.01587936000009904,
+        "synapse_creation": 1.5138588280001386,
+        "network_creation_total": 2.02746629499984
+      },
+      "in_process_restore_exact": true,
+      "neurons": 138639,
+      "weighted_connection_rows": 15091983,
+      "peak_rss_mib": 2644.078125,
+      "spike_counts_sha256": "f4eb1bf416043ae6af1e5c9641061f14428dfeeed7ee941bd75e7c9d5cc3a050",
+      "upstream_commit": "a3db62f9436074e485c0278290c2164ed6150808",
+      "mapping_sha256": "f9077434ab356affe3f17a811275a0df5800e4813be6970218d81fd668c07c1b",
+      "python": "3.12.14",
+      "platform": "Linux-6.18.44-x86_64-with-glibc2.39",
+      "cpu_count": 9,
+      "packages": {
+        "brian2": "2.8.0",
+        "numpy": "1.26.4",
+        "pandas": "2.2.3",
+        "pyarrow": "19.0.1",
+        "sympy": "1.14.0",
+        "scipy": "1.17.0",
+        "joblib": "1.5.3"
+      }
+    },
+    {
+      "experiment": "sugar",
+      "rate_hz": 200.0,
+      "seed": 23,
+      "model_mode": "full-pinned-network-offline-research",
+      "backend": "cython",
+      "feedback_enabled": false,
+      "window_ms": 50.0,
+      "windows": [
+        {
+          "window": 0,
+          "wall_s_including_runtime_prepare": 0.5408632830001352,
+          "total_spikes": 816,
+          "downstream_spikes": 606,
+          "readout_spikes": {
+            "forward": 0,
+            "feeding": 7
+          },
+          "candidate_action": {
+            "speed": 0.0,
+            "turn": 0.0,
+            "interact": true
+          },
+          "feedback": null
+        },
+        {
+          "window": 1,
+          "wall_s_including_runtime_prepare": 0.4693146079998769,
+          "total_spikes": 836,
+          "downstream_spikes": 630,
+          "readout_spikes": {
+            "forward": 0,
+            "feeding": 7
+          },
+          "candidate_action": {
+            "speed": 0.0,
+            "turn": 0.0,
+            "interact": true
+          },
+          "feedback": null
+        },
+        {
+          "window": 2,
+          "wall_s_including_runtime_prepare": 0.37298370700000305,
+          "total_spikes": 759,
+          "downstream_spikes": 571,
+          "readout_spikes": {
+            "forward": 0,
+            "feeding": 5
+          },
+          "candidate_action": {
+            "speed": 0.0,
+            "turn": 0.0,
+            "interact": true
+          },
+          "feedback": null
+        }
+      ],
+      "setup_s": 3.3857261980001567,
+      "cold_window_s": 0.6211966260000281,
+      "upstream_timings_s": {
+        "data_load": 0.4026990319998731,
+        "neuron_creation": 0.009874284000034095,
+        "synapse_creation": 1.875137420999863,
+        "network_creation_total": 2.290467655999919
+      },
+      "in_process_restore_exact": true,
+      "neurons": 138639,
+      "weighted_connection_rows": 15091983,
+      "peak_rss_mib": 2636.171875,
+      "spike_counts_sha256": "a2747e0b0471cafb77d7fd62c9c734d71aed770bc3933182e6a6fc3084c641f4",
+      "upstream_commit": "a3db62f9436074e485c0278290c2164ed6150808",
+      "mapping_sha256": "f9077434ab356affe3f17a811275a0df5800e4813be6970218d81fd668c07c1b",
+      "python": "3.12.14",
+      "platform": "Linux-6.18.44-x86_64-with-glibc2.39",
+      "cpu_count": 9,
+      "packages": {
+        "brian2": "2.8.0",
+        "numpy": "1.26.4",
+        "pandas": "2.2.3",
+        "pyarrow": "19.0.1",
+        "sympy": "1.14.0",
+        "scipy": "1.17.0",
+        "joblib": "1.5.3"
+      }
+    },
+    {
+      "experiment": "p9",
+      "rate_hz": 0.0,
+      "seed": 7,
+      "model_mode": "full-pinned-network-offline-research",
+      "backend": "cython",
+      "feedback_enabled": false,
+      "window_ms": 50.0,
+      "windows": [
+        {
+          "window": 0,
+          "wall_s_including_runtime_prepare": 0.3163530060000994,
+          "total_spikes": 0,
+          "downstream_spikes": 0,
+          "readout_spikes": {
+            "forward": 0,
+            "feeding": 0
+          },
+          "candidate_action": {
+            "speed": 0.0,
+            "turn": 0.0,
+            "interact": false
+          },
+          "feedback": null
+        },
+        {
+          "window": 1,
+          "wall_s_including_runtime_prepare": 0.47994696299997486,
+          "total_spikes": 0,
+          "downstream_spikes": 0,
+          "readout_spikes": {
+            "forward": 0,
+            "feeding": 0
+          },
+          "candidate_action": {
+            "speed": 0.0,
+            "turn": 0.0,
+            "interact": false
+          },
+          "feedback": null
+        },
+        {
+          "window": 2,
+          "wall_s_including_runtime_prepare": 0.3783253279998462,
+          "total_spikes": 0,
+          "downstream_spikes": 0,
+          "readout_spikes": {
+            "forward": 0,
+            "feeding": 0
+          },
+          "candidate_action": {
+            "speed": 0.0,
+            "turn": 0.0,
+            "interact": false
+          },
+          "feedback": null
+        }
+      ],
+      "setup_s": 2.7532595010000023,
+      "cold_window_s": 0.5149008889998186,
+      "upstream_timings_s": {
+        "data_load": 0.2951325760000145,
+        "neuron_creation": 0.008425896000062494,
+        "synapse_creation": 1.3902228300000843,
+        "network_creation_total": 1.6954093389999798
+      },
+      "in_process_restore_exact": true,
+      "neurons": 138639,
+      "weighted_connection_rows": 15091983,
+      "peak_rss_mib": 2642.86328125,
+      "spike_counts_sha256": "82c552c9fcbde2dfc3dac3369eba2663bf27a29cb88aa6a1c8aab050e60495e8",
+      "upstream_commit": "a3db62f9436074e485c0278290c2164ed6150808",
+      "mapping_sha256": "f9077434ab356affe3f17a811275a0df5800e4813be6970218d81fd668c07c1b",
+      "python": "3.12.14",
+      "platform": "Linux-6.18.44-x86_64-with-glibc2.39",
+      "cpu_count": 9,
+      "packages": {
+        "brian2": "2.8.0",
+        "numpy": "1.26.4",
+        "pandas": "2.2.3",
+        "pyarrow": "19.0.1",
+        "sympy": "1.14.0",
+        "scipy": "1.17.0",
+        "joblib": "1.5.3"
+      }
+    },
+    {
+      "experiment": "p9",
+      "rate_hz": 0.0,
+      "seed": 23,
+      "model_mode": "full-pinned-network-offline-research",
+      "backend": "cython",
+      "feedback_enabled": false,
+      "window_ms": 50.0,
+      "windows": [
+        {
+          "window": 0,
+          "wall_s_including_runtime_prepare": 0.30925225599980877,
+          "total_spikes": 0,
+          "downstream_spikes": 0,
+          "readout_spikes": {
+            "forward": 0,
+            "feeding": 0
+          },
+          "candidate_action": {
+            "speed": 0.0,
+            "turn": 0.0,
+            "interact": false
+          },
+          "feedback": null
+        },
+        {
+          "window": 1,
+          "wall_s_including_runtime_prepare": 0.3255611299998691,
+          "total_spikes": 0,
+          "downstream_spikes": 0,
+          "readout_spikes": {
+            "forward": 0,
+            "feeding": 0
+          },
+          "candidate_action": {
+            "speed": 0.0,
+            "turn": 0.0,
+            "interact": false
+          },
+          "feedback": null
+        },
+        {
+          "window": 2,
+          "wall_s_including_runtime_prepare": 0.3307868710001003,
+          "total_spikes": 0,
+          "downstream_spikes": 0,
+          "readout_spikes": {
+            "forward": 0,
+            "feeding": 0
+          },
+          "candidate_action": {
+            "speed": 0.0,
+            "turn": 0.0,
+            "interact": false
+          },
+          "feedback": null
+        }
+      ],
+      "setup_s": 3.229934342000206,
+      "cold_window_s": 0.518424098999958,
+      "upstream_timings_s": {
+        "data_load": 0.46370365500001753,
+        "neuron_creation": 0.01666731300019819,
+        "synapse_creation": 1.479120273000035,
+        "network_creation_total": 1.9611018949999561
+      },
+      "in_process_restore_exact": true,
+      "neurons": 138639,
+      "weighted_connection_rows": 15091983,
+      "peak_rss_mib": 2636.80078125,
+      "spike_counts_sha256": "82c552c9fcbde2dfc3dac3369eba2663bf27a29cb88aa6a1c8aab050e60495e8",
+      "upstream_commit": "a3db62f9436074e485c0278290c2164ed6150808",
+      "mapping_sha256": "f9077434ab356affe3f17a811275a0df5800e4813be6970218d81fd668c07c1b",
+      "python": "3.12.14",
+      "platform": "Linux-6.18.44-x86_64-with-glibc2.39",
+      "cpu_count": 9,
+      "packages": {
+        "brian2": "2.8.0",
+        "numpy": "1.26.4",
+        "pandas": "2.2.3",
+        "pyarrow": "19.0.1",
+        "sympy": "1.14.0",
+        "scipy": "1.17.0",
+        "joblib": "1.5.3"
+      }
+    },
+    {
+      "experiment": "p9",
+      "rate_hz": 100.0,
+      "seed": 7,
+      "model_mode": "full-pinned-network-offline-research",
+      "backend": "cython",
+      "feedback_enabled": false,
+      "window_ms": 50.0,
+      "windows": [
+        {
+          "window": 0,
+          "wall_s_including_runtime_prepare": 0.3964961350000067,
+          "total_spikes": 38,
+          "downstream_spikes": 29,
+          "readout_spikes": {
+            "forward": 1,
+            "feeding": 0
+          },
+          "candidate_action": {
+            "speed": 0.1,
+            "turn": 0.0,
+            "interact": false
+          },
+          "feedback": null
+        },
+        {
+          "window": 1,
+          "wall_s_including_runtime_prepare": 0.3635915100001057,
+          "total_spikes": 32,
+          "downstream_spikes": 19,
+          "readout_spikes": {
+            "forward": 2,
+            "feeding": 0
+          },
+          "candidate_action": {
+            "speed": 0.2,
+            "turn": 0.0,
+            "interact": false
+          },
+          "feedback": null
+        },
+        {
+          "window": 2,
+          "wall_s_including_runtime_prepare": 0.3587962960000368,
+          "total_spikes": 26,
+          "downstream_spikes": 18,
+          "readout_spikes": {
+            "forward": 1,
+            "feeding": 0
+          },
+          "candidate_action": {
+            "speed": 0.1,
+            "turn": 0.0,
+            "interact": false
+          },
+          "feedback": null
+        }
+      ],
+      "setup_s": 3.6391791730000023,
+      "cold_window_s": 4.570871174999866,
+      "upstream_timings_s": {
+        "data_load": 0.5136840630000279,
+        "neuron_creation": 0.016344467000180884,
+        "synapse_creation": 1.8003046009998798,
+        "network_creation_total": 2.3320234139998774
+      },
+      "in_process_restore_exact": true,
+      "neurons": 138639,
+      "weighted_connection_rows": 15091983,
+      "peak_rss_mib": 2639.4609375,
+      "spike_counts_sha256": "f6a6af7a1f9173437a37e9a87e90342f3025ad80f0a06b7a837269399e137078",
+      "upstream_commit": "a3db62f9436074e485c0278290c2164ed6150808",
+      "mapping_sha256": "f9077434ab356affe3f17a811275a0df5800e4813be6970218d81fd668c07c1b",
+      "python": "3.12.14",
+      "platform": "Linux-6.18.44-x86_64-with-glibc2.39",
+      "cpu_count": 9,
+      "packages": {
+        "brian2": "2.8.0",
+        "numpy": "1.26.4",
+        "pandas": "2.2.3",
+        "pyarrow": "19.0.1",
+        "sympy": "1.14.0",
+        "scipy": "1.17.0",
+        "joblib": "1.5.3"
+      }
+    },
+    {
+      "experiment": "p9",
+      "rate_hz": 100.0,
+      "seed": 23,
+      "model_mode": "full-pinned-network-offline-research",
+      "backend": "cython",
+      "feedback_enabled": false,
+      "window_ms": 50.0,
+      "windows": [
+        {
+          "window": 0,
+          "wall_s_including_runtime_prepare": 0.34224394900002153,
+          "total_spikes": 24,
+          "downstream_spikes": 17,
+          "readout_spikes": {
+            "forward": 1,
+            "feeding": 0
+          },
+          "candidate_action": {
+            "speed": 0.1,
+            "turn": 0.0,
+            "interact": false
+          },
+          "feedback": null
+        },
+        {
+          "window": 1,
+          "wall_s_including_runtime_prepare": 0.3390904689999843,
+          "total_spikes": 22,
+          "downstream_spikes": 16,
+          "readout_spikes": {
+            "forward": 1,
+            "feeding": 0
+          },
+          "candidate_action": {
+            "speed": 0.1,
+            "turn": 0.0,
+            "interact": false
+          },
+          "feedback": null
+        },
+        {
+          "window": 2,
+          "wall_s_including_runtime_prepare": 0.3262164610000582,
+          "total_spikes": 27,
+          "downstream_spikes": 19,
+          "readout_spikes": {
+            "forward": 1,
+            "feeding": 0
+          },
+          "candidate_action": {
+            "speed": 0.1,
+            "turn": 0.0,
+            "interact": false
+          },
+          "feedback": null
+        }
+      ],
+      "setup_s": 3.4969566680001662,
+      "cold_window_s": 0.5418426270000509,
+      "upstream_timings_s": {
+        "data_load": 0.5330972929998552,
+        "neuron_creation": 0.05990513100005046,
+        "synapse_creation": 1.8226130299999568,
+        "network_creation_total": 2.4173655050001344
+      },
+      "in_process_restore_exact": true,
+      "neurons": 138639,
+      "weighted_connection_rows": 15091983,
+      "peak_rss_mib": 2640.81640625,
+      "spike_counts_sha256": "3d4a850153056b9bdc4a2c8613b4ffaca99412b30d286bd1e5afe6e105406526",
+      "upstream_commit": "a3db62f9436074e485c0278290c2164ed6150808",
+      "mapping_sha256": "f9077434ab356affe3f17a811275a0df5800e4813be6970218d81fd668c07c1b",
+      "python": "3.12.14",
+      "platform": "Linux-6.18.44-x86_64-with-glibc2.39",
+      "cpu_count": 9,
+      "packages": {
+        "brian2": "2.8.0",
+        "numpy": "1.26.4",
+        "pandas": "2.2.3",
+        "pyarrow": "19.0.1",
+        "sympy": "1.14.0",
+        "scipy": "1.17.0",
+        "joblib": "1.5.3"
+      }
+    }
+  ]
+}

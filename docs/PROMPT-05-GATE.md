@@ -21,8 +21,10 @@ not. A smoke-test success does not satisfy the documented live-controller gate.
 Evidence: [feasibility](BRAIN-FEASIBILITY.md), [measurements](brain-benchmark.json),
 [licensing](LICENSING.md), services/brain/provenance.json, and
 services/brain/benchmark.py. These are existing September 17 measurements, not
-a new benchmark. The current workspace has no fetched upstream research checkout;
-no new simulation or end-to-end latency measurement was performed in this review.
+a new benchmark. At that prerequisite review, the workspace had no fetched upstream checkout;
+no new simulation or end-to-end latency measurement was performed. Subsequent
+[research](NEURAL-TRAINING-READINESS.md) downloaded verified inputs and performed
+new offline model execution; it does not establish online latency or a live service.
 
 ## Work needed to unblock
 

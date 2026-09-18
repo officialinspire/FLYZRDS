@@ -1,0 +1,36 @@
+{
+  "schema_version": 1,
+  "status": "planned-not-executed-live-control-prerequisite-open",
+  "model": "Full pinned FAFB v783 LIF network; connectome weights fixed",
+  "learned_parameters": "Small explicit cue-choice readout/adapter only; no biological synaptic-learning claim",
+  "cue_populations": "Two distinct sensory populations must be validated and pinned before training; not invented from game labels",
+  "train_seeds": [101, 102, 103, 104],
+  "evaluation_seeds": [201, 202, 203, 204, 205, 206, 207, 208],
+  "training_trials_per_seed_per_phase": 32,
+  "evaluation_trials_per_seed_per_phase": 32,
+  "phases": ["acquisition: cue A rewarding", "reversal: cue B rewarding"],
+  "positions": "Balanced left/right assignment independently randomized by trial seed",
+  "observations": "Cue presence/location and neural readout only; no reward identity, phase, correct choice, target location or seed exposed to policy",
+  "updates": "Reward supplied only after completed choice; adapter updates only during training; frozen during held-out evaluation",
+  "baselines": [
+    "trained readout",
+    "learning-disabled initial readout",
+    "random choice",
+    "fixed cue-A heuristic with no reversal rule"
+  ],
+  "metrics": [
+    "held-out choice accuracy by phase and seed",
+    "trial-level learning curve",
+    "reversal recovery",
+    "wall latency",
+    "parameter SHA-256",
+    "service-restart retention"
+  ],
+  "success": "Predeclare paired held-out trained-minus-random and trained-minus-learning-disabled accuracy differences by training seed. Require at least 0.10 improvement and a positive 95% bootstrap interval (10,000 resamples, seed 303, training seed as resampling unit) before claiming improvement. Report all per-seed results; four training seeds limit statistical confidence. Fixed cue-A heuristic never receives a reversal rule.",
+  "execution_gate": [
+    "measured live closed-loop neural control",
+    "validated cue and output mappings",
+    "atomic neural/world/RNG checkpoint restoration across restart",
+    "applicable model/data usage decision"
+  ]
+}
