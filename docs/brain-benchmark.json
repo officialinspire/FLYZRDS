@@ -1,0 +1,171 @@
+{
+  "complete": true,
+  "results": [
+    {
+      "rate_hz": 0.0,
+      "seed": 7,
+      "simulated_s": 0.1,
+      "setup_s": 5.238583365000068,
+      "run_s_including_brian_prepare": 2.263586344000032,
+      "wall_s_per_simulated_s": 22.63586344000032,
+      "peak_rss_mib": 2637.58984375,
+      "neurons": 138639,
+      "weighted_connection_rows": 15091983,
+      "total_spikes": 0,
+      "downstream_spikes": 0,
+      "active_neurons": 0,
+      "spike_counts_sha256": "82c552c9fcbde2dfc3dac3369eba2663bf27a29cb88aa6a1c8aab050e60495e8",
+      "top_active_flywire_ids": [],
+      "upstream_timings_s": {
+        "data_load": 1.1874952779999148,
+        "neuron_creation": 0.016027490999931615,
+        "synapse_creation": 1.5280058900002587,
+        "network_creation_total": 2.733292490000167
+      },
+      "data_bytes": 104270629,
+      "python": "3.12.14",
+      "platform": "Linux-6.18.44-x86_64-with-glibc2.39",
+      "cpu_count": 9,
+      "cpu": "AMD EPYC 9V74 80-Core Processor",
+      "packages": {
+        "brian2": "2.8.0",
+        "numpy": "2.3.5",
+        "pandas": "2.2.3",
+        "pyarrow": "19.0.1",
+        "sympy": "1.14.0",
+        "scipy": "1.17.0",
+        "joblib": "1.5.3"
+      }
+    },
+    {
+      "rate_hz": 200.0,
+      "seed": 7,
+      "simulated_s": 0.1,
+      "setup_s": 4.357530106000013,
+      "run_s_including_brian_prepare": 2.304682348999904,
+      "wall_s_per_simulated_s": 23.046823489999042,
+      "peak_rss_mib": 2628.48046875,
+      "neurons": 138639,
+      "weighted_connection_rows": 15091983,
+      "total_spikes": 1471,
+      "downstream_spikes": 1092,
+      "active_neurons": 326,
+      "spike_counts_sha256": "4957f4c9780b802d17a43ab7f13284bc385e5378bdbb3bbf4bd0d271176ac511",
+      "top_active_flywire_ids": [
+        ["720575940638202345", 28],
+        ["720575940632425919", 24],
+        ["720575940612670570", 23],
+        ["720575940628853239", 22],
+        ["720575940639332736", 22],
+        ["720575940617000768", 21],
+        ["720575940639198653", 21],
+        ["720575940640649691", 21],
+        ["720575940637568838", 18],
+        ["720575940617937543", 17]
+      ],
+      "upstream_timings_s": {
+        "data_load": 1.4070064190000267,
+        "neuron_creation": 0.01685725800007276,
+        "synapse_creation": 1.4786694090003039,
+        "network_creation_total": 2.9039668810000876
+      },
+      "data_bytes": 104270629,
+      "python": "3.12.14",
+      "platform": "Linux-6.18.44-x86_64-with-glibc2.39",
+      "cpu_count": 9,
+      "cpu": "AMD EPYC 9V74 80-Core Processor",
+      "packages": {
+        "brian2": "2.8.0",
+        "numpy": "2.3.5",
+        "pandas": "2.2.3",
+        "pyarrow": "19.0.1",
+        "sympy": "1.14.0",
+        "scipy": "1.17.0",
+        "joblib": "1.5.3"
+      }
+    },
+    {
+      "rate_hz": 0.0,
+      "seed": 23,
+      "simulated_s": 0.1,
+      "setup_s": 3.597185284000261,
+      "run_s_including_brian_prepare": 2.213511236999693,
+      "wall_s_per_simulated_s": 22.135112369996932,
+      "peak_rss_mib": 2640.0859375,
+      "neurons": 138639,
+      "weighted_connection_rows": 15091983,
+      "total_spikes": 0,
+      "downstream_spikes": 0,
+      "active_neurons": 0,
+      "spike_counts_sha256": "82c552c9fcbde2dfc3dac3369eba2663bf27a29cb88aa6a1c8aab050e60495e8",
+      "top_active_flywire_ids": [],
+      "upstream_timings_s": {
+        "data_load": 1.0567981859999236,
+        "neuron_creation": 0.016389915999752702,
+        "synapse_creation": 1.0737764860000425,
+        "network_creation_total": 2.1483899109998674
+      },
+      "data_bytes": 104270629,
+      "python": "3.12.14",
+      "platform": "Linux-6.18.44-x86_64-with-glibc2.39",
+      "cpu_count": 9,
+      "cpu": "AMD EPYC 9V74 80-Core Processor",
+      "packages": {
+        "brian2": "2.8.0",
+        "numpy": "2.3.5",
+        "pandas": "2.2.3",
+        "pyarrow": "19.0.1",
+        "sympy": "1.14.0",
+        "scipy": "1.17.0",
+        "joblib": "1.5.3"
+      }
+    },
+    {
+      "rate_hz": 200.0,
+      "seed": 23,
+      "simulated_s": 0.1,
+      "setup_s": 3.7286124419997577,
+      "run_s_including_brian_prepare": 2.3121326989999034,
+      "wall_s_per_simulated_s": 23.121326989999034,
+      "peak_rss_mib": 2634.4609375,
+      "neurons": 138639,
+      "weighted_connection_rows": 15091983,
+      "total_spikes": 1541,
+      "downstream_spikes": 1129,
+      "active_neurons": 328,
+      "spike_counts_sha256": "79527a2f24aa9d2eaeeba2b30ed683590d14dbc49a67e6349ebc38349696f540",
+      "top_active_flywire_ids": [
+        ["720575940639259967", 29],
+        ["720575940629176663", 27],
+        ["720575940639198653", 27],
+        ["720575940628853239", 25],
+        ["720575940612670570", 23],
+        ["720575940632889389", 23],
+        ["720575940617000768", 22],
+        ["720575940621754367", 20],
+        ["720575940624963786", 20],
+        ["720575940639332736", 20]
+      ],
+      "upstream_timings_s": {
+        "data_load": 1.2163422100002208,
+        "neuron_creation": 0.016503175999787345,
+        "synapse_creation": 1.087841688000026,
+        "network_creation_total": 2.3222248980000586
+      },
+      "data_bytes": 104270629,
+      "python": "3.12.14",
+      "platform": "Linux-6.18.44-x86_64-with-glibc2.39",
+      "cpu_count": 9,
+      "cpu": "AMD EPYC 9V74 80-Core Processor",
+      "packages": {
+        "brian2": "2.8.0",
+        "numpy": "2.3.5",
+        "pandas": "2.2.3",
+        "pyarrow": "19.0.1",
+        "sympy": "1.14.0",
+        "scipy": "1.17.0",
+        "joblib": "1.5.3"
+      }
+    }
+  ]
+}

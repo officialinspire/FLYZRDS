@@ -1,0 +1,27 @@
+{
+  "schema_version": 1,
+  "dataset": "FAFB / FlyWire v783 (upstream processed tables)",
+  "source": "https://codex.flywire.ai/?dataset=fafb",
+  "upstream": "https://github.com/eonsystemspbc/fly-brain",
+  "commit": "a3db62f9436074e485c0278290c2164ed6150808",
+  "code_license": "GPL-2.0; upstream code is fetched separately, not vendored",
+  "data_license": "Separate dataset redistribution terms need verification before redistribution; upstream code license is not treated as a blanket data license.",
+  "files": {
+    "data/2025_Completeness_783.csv": "52b0ac6094cd32c546f8d4c341e094376f48f4e791f8db9b166de5dff8199ea4",
+    "data/2025_Connectivity_783.parquet": "efeb23fb99098e9c390f6869969b2a121a2ee92c833cfc45ecb2c1d8e1af0347",
+    "code/run_brian2_cuda.py": "0184fb8bbd28e36643a0bcffbe64675d58cb1bcce27cbe1fc08deb8cb1777722",
+    "code/benchmark.py": "e18dae9072baf9ee0f0581282641c58864fdc138c6e75b718a542eb27d272874",
+    "LICENSE": "8177f97513213526df2cf6184d8ff986c675afb514d4e68a404010521b880643"
+  },
+  "filtering": "No additional row filtering. Upstream processing retained as supplied; not asserted identical to every current Codex export.",
+  "neurons": 138639,
+  "connection_rows": 15091983,
+  "summed_connectivity": 54492922,
+  "interpretation": "Connection rows are weighted neuron-pair entries, not individual synapses. Connectivity is upstream synapse count; Excitatory x Connectivity supplies signed model weights.",
+  "model_changes": [
+    "Remove unused w = 0 reset assignment: NeuronGroup has no w variable; synaptic weights belong to Synapses. No other parameter change.",
+    "Use Brian2 numpy runtime with explicit dt=0.1ms for portable CPU smoke benchmark, not upstream optimized C++/CUDA deployment."
+  ],
+  "experiment": "upstream sugar: 21 GRNs at 200 Hz; paired 0 Hz control; seeds 7 and 23",
+  "claim_boundary": "Headless sensorimotor propagation only; not learned pet behavior, consciousness, or online controller validation."
+}
