@@ -9,7 +9,7 @@
   <p class="eyebrow">A SMALL CREATURE. A LITTLE WONDER.</p>
   <h1 id="title">Raise a little<br><em>magic.</em></h1>
   <p class="intro">Meet your next pocket-sized companion.<br>A tiny wizard. A very big adventure.</p>
-  <div class="scene-wrap"><canvas id="title-canvas" width="320" height="190" role="img" aria-label="A mint chibi long-neck dinosaur in a wizard hat, in a moonlit pixel garden"></canvas><span class="scene-label">THE ENCHANTED GARDEN</span></div>
+  <div class="scene-wrap"><canvas id="title-canvas" width="320" height="190" role="img" aria-label="An armored jade sci-fi long-neck dinosaur in a moonlit pixel garden"></canvas><span class="scene-label">THE ENCHANTED GARDEN</span></div>
   <div class="title-actions"><button type="button" id="start" class="primary" disabled>Opening your garden… <span>↗</span></button><button type="button" id="settings-open" class="secondary">Settings</button></div>
   <p class="caption">WIZARD LIZARD FLIES <span>✦</span> BY INSPIRE</p>
 </section>
@@ -17,17 +17,18 @@
   <div class="habitat-heading"><div><p class="eyebrow">YOUR LITTLE COMPANION</p><h1 id="pet-name">Sprout</h1></div><span class="pill">DEMO PET</span></div>
   <p class="intro">A quiet moment in the enchanted garden.</p>
   <div class="scene-wrap"><canvas id="habitat-canvas" width="320" height="220" role="img" aria-label="Your demo dinosaur wandering in a pixel garden"></canvas><span id="state-label" class="scene-label">RESTING</span></div>
-  <div class="pet-info"><span><small>CREATURE</small>Long-neck wizard</span><span><small>CONTROLLER</small>Scripted demo</span></div>
+  <div class="pet-info"><span><small>CREATURE</small>Sci-fi long-neck</span><span><small>CONTROLLER</small>Scripted demo</span></div>
   <section class="needs" aria-label="Pet care game stats">
 <label>Food <output id="food-value">75</output><meter id="food-meter" min="0" max="100" value="75">75</meter></label>
 <label>Energy <output id="energy-value">80</output><meter id="energy-meter" min="0" max="100" value="80">80</meter></label>
 <label>Enrichment <output id="enrichment-value">65</output><meter id="enrichment-meter" min="0" max="100" value="65">65</meter></label>
 <label>Bond <output id="bond-value">10</output><meter id="bond-meter" min="0" max="100" value="10">10</meter></label>
 </section>
-<div id="hatch-panel"><label for="hatch-name">Name your little wizard</label><input id="hatch-name" maxlength="24" value="Sprout" autocomplete="off"><button type="button" id="hatch" class="primary">Hatch my companion ✦</button></div>
+<div id="hatch-panel"><label for="hatch-name">Name your companion</label><input id="hatch-name" maxlength="24" value="Sprout" autocomplete="off"><button type="button" id="hatch" class="primary">Hatch my companion ✦</button></div>
 <div id="care-panel" hidden>
 <label class="placement" for="place-x">Place next item: <output id="place-label">Center</output><input id="place-x" type="range" min="15" max="85" step="5" value="50"></label>
 <div class="care-actions"><button type="button" id="feed"><span class="care-icon feed-icon" aria-hidden="true"></span>Feed</button><button type="button" id="play"><span class="care-icon play-icon" aria-hidden="true"></span>Play</button><button type="button" id="rest"><span class="care-icon rest-icon" aria-hidden="true"></span><span id="rest-text">Rest</span></button><button type="button" id="habitat-open"><span class="care-icon habitat-icon" aria-hidden="true"></span>Habitat</button></div>
+<p id="level-value" class="note">Level 1 / 5 · 0 demo XP</p><p id="duel-unlock" class="note">Jade accent unlocked</p><button type="button" id="duel-open" disabled>Practice duel</button><p class="note">Association training is unavailable until live neural control passes its research gate.</p>
 <p id="care-message" class="note" role="status" aria-live="polite">Place something in the garden and let your companion explore.</p>
 </div>
 <div class="habitat-actions"><button type="button" id="pause" class="primary">Pause</button><button type="button" id="back" class="secondary">Home</button></div>
@@ -47,5 +48,16 @@
 </dialog>
 <dialog id="confirm" aria-labelledby="confirm-title"><h2 id="confirm-title">Replace this demo pet?</h2><p id="confirm-description">This replaces the current saved pet. Export a backup first if you want to keep it.</p><div class="title-actions"><button type="button" id="confirm-cancel">Keep my pet</button><button type="button" id="confirm-replace" class="danger">Replace pet</button></div></dialog>
 <dialog id="habitat-settings" aria-labelledby="habitat-title"><h2 id="habitat-title">A little place of your own.</h2><label for="scenery">Garden style</label><select id="scenery"><option value="moonlit">Moonlit garden</option><option value="mushrooms">Mushroom grove</option></select><p class="note">Decorations stay outside the walking lane. Placed berries and toys stay where you left them.</p><button type="button" id="habitat-close">Back to my companion</button></dialog>
+<dialog id="duel-dialog" aria-labelledby="duel-title">
+<h2 id="duel-title">Practice arena</h2><p class="pill">SCRIPTED DEMO · LOCAL XP ONLY</p>
+<p class="note">Meet Echo, a practice projection of your companion. Shields only: no injury or death. Your garden rests during a duel. Closing or hiding pauses the match; reload resumes the saved round.</p>
+<canvas id="duel-canvas" width="320" height="150" role="img" aria-label="Your dinosaur and Echo practicing with energy shields"></canvas>
+<p><strong>Your companion:</strong> <span id="player-shield">30 / 30 shield</span></p><p><strong>Echo:</strong> <span id="opponent-shield">30 / 30 shield</span></p>
+<p class="note">Spark: 2 charge, 8 shield impact, every round. Ward: 2 charge, 8 barrier, skip one round. Bloom: 3 charge, restore 7 shield, skip two rounds. Both recover 1 charge each round; Rest recovers 2 extra. Limit: 20 rounds, then the higher shield wins; equal shields draw.</p>
+<label for="duel-instruction">Broad instruction</label><select id="duel-instruction"><option value="attack">Press forward</option><option value="guard">Hold the shield</option><option value="recover">Recover and regroup</option></select>
+<p id="duel-result" role="status" aria-live="polite">Start a friendly practice duel.</p>
+<div class="duel-actions"><button type="button" id="duel-new">New practice match</button><button type="button" id="duel-next" disabled>Advance one round</button><button type="button" id="duel-close">Pause and return</button></div>
+<details><summary>Inspect scripted decisions</summary><p class="note">An isolated copy of the existing demo controller influences a fixed tactical adapter. It does not change the care controller or learn combat strategy. Controller input/output and resulting game rules are logged separately. No neural controller is connected.</p><pre id="duel-log"></pre></details>
+</dialog>
 <script type="module" src="/src/main.ts"></script>
 </body></html>

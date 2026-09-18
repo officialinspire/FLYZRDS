@@ -4,7 +4,7 @@
 
 INSPIRE's mobile-first virtual pet experiment: original cute-but-fierce sci-fi dinosaurs, an enchanted pixel garden, and research toward FlyWire-derived neural control.
 
-## Current build: care and art alpha (prompts 00–04)
+## Current build: care, art and demo practice arena
 
 - Hatch/name a long-neck; place berries and a toy; feed, play, rest, and decorate.
 - Bounded care stats, one-use interactions, active-time cooldowns, forgiving absence.
@@ -13,6 +13,8 @@ INSPIRE's mobile-first virtual pet experiment: original cute-but-fierce sci-fi d
 - Responsive title screen, settings, pause/resume, reduced motion.
 - Deterministic scripted dinosaur controller, 50ms world ticks, validated contracts.
 - IndexedDB saves, export/import, confirmed replacement, corruption handling, and one-tab ownership.
+- Shield-only practice duels against Echo: Spark, Ward, Bloom, local XP and five cosmetic levels.
+- Resumable rounds and atomic match/XP saves; clearly labeled scripted tactics.
 - Reproducible real-data brain propagation smoke test and recorded measurements.
 
 **The visible pet is a scripted demo.** It is not connected to the brain runner, does not learn yet, and is not claimed to be conscious. The research run succeeded, but interactive neural deployment is **NO-GO on the tested path**. See [feasibility results](docs/BRAIN-FEASIBILITY.md).
@@ -60,7 +62,7 @@ remains a scripted demo.
 
 ## What is next
 
-Prompt 05 is **blocked**, not implemented; see the [prerequisite review](docs/PROMPT-05-GATE.md). Neural integration remains gated on interactive performance, an evidenced decoder, and licensing review. Care and generated sprite production are implemented. Training, battles, expeditions, and camera interactions are later phases. Cast and Ward sprites are preview-only art.
+Prompt 05 is **blocked**, not implemented; see the [prerequisite review](docs/PROMPT-05-GATE.md). Neural integration remains gated on interactive performance, an evidenced decoder, and licensing review. Care and generated sprite production are implemented. Prompt 06 training remains blocked by that live-control prerequisite. Prompt 07 has a [local scripted practice arena](docs/DUELS.md); its online neural control and authoritative rewards remain unavailable. Cast and Ward art now appears in the arena. Expeditions and camera interactions are later phases.
 
 **Installation/offline PWA support is planned, not implemented in this build.** Android/iPhone are target platforms; no physical phone or visual-browser acceptance is claimed. No web deployment, Shopify change, or app-store publication has occurred.
 

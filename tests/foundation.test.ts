@@ -7,6 +7,7 @@ import {
 import { IDBFactory } from "fake-indexeddb";
 import { describe, expect, it } from "vitest";
 import { BrainController, DemoController } from "../apps/web/src/controller";
+import { freshProgress } from "../apps/web/src/duel";
 import { Ownership } from "../apps/web/src/ownership";
 import {
   parseImport,
@@ -18,7 +19,8 @@ import { advance, createWorld, FixedClock } from "../apps/web/src/world";
 
 function fixture(): Save {
   return {
-    version: 2,
+    version: 3,
+    progress: freshProgress(),
     pet: { id: "pet-123", name: "Sprout", hatched: true },
     world: createWorld(),
     controller: new DemoController().checkpoint(),

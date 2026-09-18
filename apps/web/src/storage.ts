@@ -6,6 +6,7 @@ import {
   text,
   validateCheckpoint,
 } from "@flyzrds/contracts";
+import { freshProgress, type Progress, validateProgress } from "./duel";
 import {
   type Animation,
   createWorld,
@@ -13,7 +14,8 @@ import {
   type World,
 } from "./world";
 export interface Save {
-  version: 2;
+  version: 3;
+  progress: Progress;
   pet: { id: string; name: string; hatched: boolean };
   world: World;
   controller: Checkpoint;
@@ -22,7 +24,7 @@ export interface Save {
 }
 export function validateSave(input: unknown): Save {
   const v = object(input);
-  if (v.version !== 1 && v.version !== 2)
+  if (v.version !== 1 && v.version !== 2 && v.version !== 3)
     throw new Error("Unsupported save version; keep your backup");
   const p = object(v.pet),
     w = object(v.world),
@@ -87,7 +89,8 @@ export function validateSave(input: unknown): Save {
     });
   }
   return {
-    version: 2,
+    version: 3,
+    progress: v.version === 3 ? validateProgress(v.progress) : freshProgress(),
     pet: {
       id: text(p.id),
       name: text(p.name, 24),
@@ -153,6 +156,12 @@ export class SaveStore {
   async legacyBackup(): Promise<unknown> {
     return this.operation("readonly", (store) => store.get("backup-v1"));
   }
+  async previousBackup(): Promise<unknown> {
+    const v2 = await this.operation("readonly", (store) =>
+      store.get("backup-v2"),
+    );
+    return v2 ?? this.legacyBackup();
+  }
   async write(save: Save): Promise<void> {
     const checked = validateSave(save);
     await this.operation("readwrite", (store) => {
@@ -160,6 +169,7 @@ export class SaveStore {
       request.onsuccess = () => {
         const previous = request.result;
         if (previous?.version === 1) store.put(previous, "backup-v1");
+        if (previous?.version === 2) store.put(previous, "backup-v2");
         store.put(checked, "current");
       };
       return request;

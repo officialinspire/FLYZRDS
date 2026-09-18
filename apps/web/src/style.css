@@ -471,3 +471,33 @@ select {
 #sprite-scale {
   margin: 12px 0;
 }
+
+#duel-canvas {
+  width: 100%;
+  height: auto;
+  image-rendering: pixelated;
+}
+.duel-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin: 16px 0;
+}
+#duel-dialog .duel-actions button {
+  flex: 1 1 130px;
+}
+#duel-log {
+  white-space: pre-wrap;
+  overflow-wrap: anywhere;
+  font-size: 12px;
+  max-height: 220px;
+  overflow: auto;
+}
+#duel-dialog summary {
+  min-height: 44px;
+  cursor: pointer;
+  padding: 12px 0;
+}
+#duel-dialog p {
+  overflow-wrap: anywhere;
+}
