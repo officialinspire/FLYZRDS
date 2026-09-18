@@ -36,7 +36,7 @@ def normalize(name, filename, cell, margin, xs, ys):
     atlas.save(OUT/f'{name}.png',optimize=True)
     return {'file':f'{name}.png','cell':cell,'columns':4,'rows':4,'pivot':[cell//2,cell-margin],'safeBorder':margin,'sourceRects':rects,'uniformScale':factor,'bounds':bounds}
 
-pet=normalize('longneck','longneck-generated.png',64,4,[0,335,640,973,1254],[0,320,602,930,1254])
+pet=normalize('longneck','longneck-scifi-generated.png',64,4,[0,330,640,950,1254],[0,335,645,925,1254])
 props=normalize('garden','garden-generated.png',32,2,[0,320,635,955,1254],[0,340,642,944,1254])
 manifest={'version':1,'pet':pet,'props':props,'animations':{key:{'frames':[i*2,i*2+1],'frameMs':DURATIONS[i]} for i,key in enumerate(ANIMATIONS)},'propFrames':dict(zip(PROPS,range(16)))}
 # Derived icon using the generated idle frame on a simple code-native background.

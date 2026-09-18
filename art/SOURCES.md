@@ -2,9 +2,12 @@
 
 Created for FLYZRDS with the built-in OpenAI image generator on 2026-09-18.
 No external reference images or third-party character assets were used. Exact
-prompts and tool attribution are in prompts.json. The originals remain unchanged:
+prompts and tool attribution are in prompts.json. The originals are retained:
 
-- source/longneck-generated.png — 16 long-neck wizard poses.
+- source/longneck-generated.png — 16 original long-neck wizard poses (archived, no longer consumed).
+- source/longneck-scifi-generated.png — 16 replacement sci-fi dinosaur poses.
+  Redesign prompt and boundary revision are recorded in redesign-prompts.json.
+  Generated without external character references; Pokemon is a style influence.
 - source/garden-generated.png — 16 props, tiles, spell effects and UI icons.
 
 Runtime outputs: apps/web/public/assets/longneck.png, garden.png, icon-180.png,

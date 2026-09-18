@@ -45,3 +45,20 @@ previous environment blocked localhost browser access. No Shopify/DNS changes.
 Next phase: resolve neural feasibility gates before connecting a live controller.
 For development: npm ci && npm run check; python scripts/verify-assets.py (Pillow);
 python -m unittest discover -s services/brain -p 'test_*.py'.
+
+## Sci-fi creature redesign — 2026-09-18
+
+- Replaced all 16 long-neck frames with original jade sci-fi dinosaur artwork:
+  ivory horns/claws, indigo natural armor, amber eyes and cyan dorsal plates.
+  No wizard hat, cape or staff. Existing care behavior and garden props retained.
+- Regenerated app icons, both manifests and review montage; runtime PNGs total
+  95,872 bytes. Built-in generator prompts and new source committed; old source archived.
+- Visually inspected source and normalized 3× montage. All 16 full silhouettes
+  clear source crop boundaries; all 32 runtime sprites pass alpha-safe margins,
+  integer-scale bounds and SHA-256 verification.
+- npm ci and npm run check passed: typecheck, Biome, 31 Vitest tests and production
+  build. Python brain provenance unittest passed (1 test).
+- Actual phone/browser visual acceptance remains pending. Cast/ward keys remain
+  preview-only and now depict bioelectric breath and an energy barrier.
+- Rebuild recipe: python scripts/normalize-assets.py, then npx biome format --write
+  apps/web/public/assets/manifest.json apps/web/src/asset-manifest.json.
