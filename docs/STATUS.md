@@ -62,3 +62,20 @@ python -m unittest discover -s services/brain -p 'test_*.py'.
   preview-only and now depict bioelectric breath and an energy barrier.
 - Rebuild recipe: python scripts/normalize-assets.py, then npx biome format --write
   apps/web/public/assets/manifest.json apps/web/src/asset-manifest.json.
+
+## Prompt 05 prerequisite review — 2026-09-18
+
+**Blocked; not implemented.** The attached prompt pack requires a successful
+Prompt 01 gate and stops dependent neural work when a research gate fails.
+Existing headless propagation passes, but interactive performance, a validated
+output decoder and licensing decisions remain open. See PROMPT-05-GATE.md for
+acceptance evidence and the ordered unblocking work. No new model execution or
+latency measurement was performed; no upstream checkout is present locally.
+
+Changed files: docs/PROMPT-05-GATE.md, README.md, docs/STATUS.md. The requested
+merge also incorporates the previously completed sci-fi sprite redesign.
+Verification: npm ci && npm run check (typecheck, Biome, 31 tests, production
+build), python scripts/verify-assets.py (32 sprites, bounds and hashes), and
+python -m unittest discover -s services/brain -p 'test_*.py' (1 test) passed.
+No neural-service acceptance or physical-device checks are claimed.
+Next: resolve the research gate before implementing Prompt 05 or Prompt 06.
