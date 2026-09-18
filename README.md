@@ -2,13 +2,13 @@
 
 **Wizard Lizard Flies — Raise a little magic.**
 
-INSPIRE's mobile-first virtual pet experiment: original chibi wizard dinosaurs, an enchanted pixel garden, and research toward FlyWire-derived neural control.
+INSPIRE's mobile-first virtual pet experiment: original cute-but-fierce sci-fi dinosaurs, an enchanted pixel garden, and research toward FlyWire-derived neural control.
 
 ## Current build: care and art alpha (prompts 00–04)
 
 - Hatch/name a long-neck; place berries and a toy; feed, play, rest, and decorate.
 - Bounded care stats, one-use interactions, active-time cooldowns, forgiving absence.
-- Generated 16-bit chibi sprites: eight animations, props, tiles, effects and app icons.
+- Generated cartoon dinosaur sprites: eight animations, props, tiles, effects and app icons.
 - Sprite workshop at `sprites.html`; all frames and animations at 1×/2×/3×.
 - Responsive title screen, settings, pause/resume, reduced motion.
 - Deterministic scripted dinosaur controller, 50ms world ticks, validated contracts.
@@ -72,4 +72,4 @@ No project-wide open-source license has been selected. Upstream research code is
 
 ## Artwork pipeline
 
-Source prompts/originals are in `art/`; the built-in image generator produced both sheets. `python scripts/normalize-assets.py` (Pillow) reproduces the checked atlases and icons. `python scripts/verify-assets.py` validates dimensions, safe margins, integer scaling and hashes. Runtime PNGs total 100,226 bytes. Source sheets are not included in the frontend build. See [asset contract](docs/ASSET-MANIFEST.md) and [attribution](art/SOURCES.md).
+Source prompts/originals are in `art/`; the built-in image generator produced both sheets. `python scripts/normalize-assets.py` (Pillow) reproduces the checked atlases and icons. `python scripts/verify-assets.py` validates dimensions, safe margins, integer scaling and hashes. Runtime PNGs total 95,872 bytes. Source sheets are not included in the frontend build. See [asset contract](docs/ASSET-MANIFEST.md) and [attribution](art/SOURCES.md).

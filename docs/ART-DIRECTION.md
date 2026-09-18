@@ -1,9 +1,9 @@
 # Art direction
 
-Cartoon 16-bit-style chibi fantasy. Warm, kind, curious. Cream type on midnight violet, mint primary action, gold accents. Short pixel-like identity labels; readable system font for longer UI text. No external fonts/network artwork required.
+Original science-fiction dinosaurs: cute but fierce, confident and slightly intimidating. Pokemon-inspired clean cartoon outlines and cel shading, with distinct original anatomy. Keep the violet/mint/gold interface and existing garden. No wizard hats, staffs, capes, robes or other overt wizard costumes on creatures.
 
-First companion: oversized-head mint long-neck, tiny feet, crooked purple wizard hat, cape and glowing staff. Night garden with mushrooms, moon and rune stones. The generated source sheets now live in art/source; checked runtime atlases live in apps/web/public/assets. render.ts composes the garden using these assets.
+First companion is a jade long-neck with an angular muzzle, narrow amber eyes, swept-back ivory horns, natural indigo armor plates, cyan bioluminescent dorsal spikes, a segmented cream belly and visible claws. Organic, not a costumed robot. No oversized toddler eyes or rosy cheeks. Raptor remains a later body.
 
-Phase 04 must define frame geometry/pivots before raster generation. Planned states: idle, walk, eat, play, rest, cast, ward, celebrate. Keep tail/hat in bounds, consistent logical pixels and nearest-neighbor scale. Original assets only; no borrowed Pokémon/Tamagotchi characters.
+Sixteen poses retain all eight runtime animation keys: idle, walk, eat, play, rest, cast, ward, celebrate. The legacy cast key now depicts bioelectric charge/breath, and ward depicts a technological energy barrier. Both remain preview-only; no combat behavior is added.
 
-Phase 04 source cells were imperfectly aligned at 1254×1254, so inspected custom crop boundaries replace the requested exact source grid. A single uniform scale per atlas, bottom-ground alignment, crisp alpha, and nearest-neighbor resizing produce consistent 64px pet / 32px prop cells. No hats/tails/effects touch final cell boundaries. See ASSET-MANIFEST.md and art/SOURCES.md.
+Clean anime source art is normalized to the existing 64px logical frames using a single uniform scale, ground pivot (32,60), crisp alpha and nearest-neighbor sampling. Every silhouette has a 4px safe border. Source rectangles are inspected explicitly; do not assume an exact generated grid. Garden props stay at 32px. See ASSET-MANIFEST.md and art/SOURCES.md.
