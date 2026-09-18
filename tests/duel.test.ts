@@ -12,6 +12,7 @@ import {
   startDuel,
   validateProgress,
 } from "../apps/web/src/duel";
+import { freshExploration } from "../apps/web/src/expedition";
 import { type Save, SaveStore } from "../apps/web/src/storage";
 import { createWorld } from "../apps/web/src/world";
 
@@ -22,7 +23,8 @@ function required<T>(value: T | null | undefined): T {
 const checkpoint = new DemoController().checkpoint();
 function save(): Save {
   return {
-    version: 3,
+    version: 4,
+    exploration: freshExploration(),
     progress: startDuel(freshProgress()),
     pet: { id: "arena-pet", name: "Fern", hatched: true },
     world: createWorld(),

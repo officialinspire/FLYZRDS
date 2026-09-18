@@ -8,6 +8,7 @@ import { IDBFactory } from "fake-indexeddb";
 import { describe, expect, it } from "vitest";
 import { BrainController, DemoController } from "../apps/web/src/controller";
 import { freshProgress } from "../apps/web/src/duel";
+import { freshExploration } from "../apps/web/src/expedition";
 import { Ownership } from "../apps/web/src/ownership";
 import {
   parseImport,
@@ -19,7 +20,8 @@ import { advance, createWorld, FixedClock } from "../apps/web/src/world";
 
 function fixture(): Save {
   return {
-    version: 3,
+    version: 4,
+    exploration: freshExploration(),
     progress: freshProgress(),
     pet: { id: "pet-123", name: "Sprout", hatched: true },
     world: createWorld(),

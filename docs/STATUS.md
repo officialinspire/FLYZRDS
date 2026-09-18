@@ -129,3 +129,17 @@ Next: resolve the research gate before implementing Prompt 05 or Prompt 06.
   legal actions, draw/win/loss, defeat recovery and v2 backup migration.
 - Real-browser visual and physical-device acceptance remain untested. No service,
   paid compute, model training or deployment was started.
+
+## Prompt 08 — foreground expeditions
+
+- Added expedition.ts distance filtering, transient GPS watch lifecycle, capped
+  local exploration supplies and idempotent journey claims; expedition-ui.ts adds
+  explicit start/pause/finish and an equivalent permission-free indoor quest.
+- Version 4 stores aggregates only and preserves earlier migration backups and
+  duel progress. Main shares atomic activity writes and pauses garden advancement.
+- npm run check passed: 39 tests, strict typecheck, lint and production build.
+  Synthetic tests cover normal walking, jitter, accuracy, stale/order/gap/jump
+  filters, watch cleanup/late callbacks, denial, daily/inventory caps and reload
+  claims. Actual hardware location/background behavior is not verified.
+- See EXPEDITIONS.md for limits, privacy, API references and offline/online scope.
+  No coordinates, media, deployment or sensor requests on startup are committed.

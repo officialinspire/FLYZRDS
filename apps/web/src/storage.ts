@@ -8,13 +8,19 @@ import {
 } from "@flyzrds/contracts";
 import { freshProgress, type Progress, validateProgress } from "./duel";
 import {
+  type Exploration,
+  freshExploration,
+  validateExploration,
+} from "./expedition";
+import {
   type Animation,
   createWorld,
   type ItemKind,
   type World,
 } from "./world";
 export interface Save {
-  version: 3;
+  version: 4;
+  exploration: Exploration;
   progress: Progress;
   pet: { id: string; name: string; hatched: boolean };
   world: World;
@@ -24,7 +30,7 @@ export interface Save {
 }
 export function validateSave(input: unknown): Save {
   const v = object(input);
-  if (v.version !== 1 && v.version !== 2 && v.version !== 3)
+  if (v.version !== 1 && v.version !== 2 && v.version !== 3 && v.version !== 4)
     throw new Error("Unsupported save version; keep your backup");
   const p = object(v.pet),
     w = object(v.world),
@@ -89,8 +95,10 @@ export function validateSave(input: unknown): Save {
     });
   }
   return {
-    version: 3,
-    progress: v.version === 3 ? validateProgress(v.progress) : freshProgress(),
+    version: 4,
+    exploration:
+      v.version === 4 ? validateExploration(v.exploration) : freshExploration(),
+    progress: v.version >= 3 ? validateProgress(v.progress) : freshProgress(),
     pet: {
       id: text(p.id),
       name: text(p.name, 24),
@@ -157,6 +165,10 @@ export class SaveStore {
     return this.operation("readonly", (store) => store.get("backup-v1"));
   }
   async previousBackup(): Promise<unknown> {
+    const v3 = await this.operation("readonly", (store) =>
+      store.get("backup-v3"),
+    );
+    if (v3) return v3;
     const v2 = await this.operation("readonly", (store) =>
       store.get("backup-v2"),
     );
@@ -170,6 +182,7 @@ export class SaveStore {
         const previous = request.result;
         if (previous?.version === 1) store.put(previous, "backup-v1");
         if (previous?.version === 2) store.put(previous, "backup-v2");
+        if (previous?.version === 3) store.put(previous, "backup-v3");
         store.put(checked, "current");
       };
       return request;
