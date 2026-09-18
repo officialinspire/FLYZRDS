@@ -50,6 +50,14 @@ python services/brain/benchmark.py
 
 The fetch command downloads the pinned public upstream repository into ignored `research/fly-brain`, including about 100 MiB of processed connectivity data. The runner verifies checksums before importing upstream model code. Four bounded subprocesses compare 0/200 Hz stimulation with seeds 7/23. Results go to ignored `research/benchmark.json`. Committed [measurement summary](docs/brain-benchmark.json) contains no brain data or personal information.
 
+## Neural training preparation
+
+The full pinned FAFB v783 model has new offline intervention/readout, repeated-window
+performance, food-feedback and in-process replay evidence. See the
+[measured research report](docs/NEURAL-TRAINING-READINESS.md). The protocol in
+`services/brain/training-protocol.json` is planned, not trained; the visible pet
+remains a scripted demo.
+
 ## What is next
 
 Prompt 05 is **blocked**, not implemented; see the [prerequisite review](docs/PROMPT-05-GATE.md). Neural integration remains gated on interactive performance, an evidenced decoder, and licensing review. Care and generated sprite production are implemented. Training, battles, expeditions, and camera interactions are later phases. Cast and Ward sprites are preview-only art.

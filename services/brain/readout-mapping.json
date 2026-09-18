@@ -1,0 +1,17 @@
+{
+  "schema_version": 1,
+  "status": "offline-research-candidate-not-live-controller",
+  "dataset": "FAFB v783 upstream processed tables",
+  "upstream_commit": "a3db62f9436074e485c0278290c2164ed6150808",
+  "evidence_url": "https://github.com/eonsystemspbc/fly-brain/blob/a3db62f9436074e485c0278290c2164ed6150808/code/paper-phil-drosophila/example.ipynb",
+  "evidence_files": {
+    "code/paper-phil-drosophila/example.ipynb": "1240eb0a452a145d4ef97f535ac755459d0f5213a1d1785fd82527bc60eecadb"
+  },
+  "readouts": {
+    "forward": ["720575940626730883", "720575940620300308"],
+    "feeding": ["720575940660219265", "720575940618238523"]
+  },
+  "interpretation": "Pinned upstream notebook labels P9_oDN1 as forward-velocity-associated and MN9 as proboscis feeding motor neurons. These are candidate downstream readouts, distinct from directly stimulated sugar GRNs and P9 cells. This notebook attribution is not independent validation of dinosaur behavior.",
+  "decoder": "Fixed engineered scale: speed=min(1, pooled forward spikes/(2*windowSeconds*100Hz)); turn=0; interact=pooled feeding spikes>0. No parameters learn. No signed steering inferred from bilateral names.",
+  "stimuli": "Pinned upstream sugar population at 0/200Hz and P9 population at 0/100Hz, seeds 7/23. P9 stimulation is an optogenetic-style intervention, not a validated environment sensor mapping."
+}

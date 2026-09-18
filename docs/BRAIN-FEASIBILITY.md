@@ -43,3 +43,13 @@ For a later navigation experiment, upstream labels P9 left/right IDs `7205759406
 - Next research: measure warmed continuous execution/optimized backend, test a documented motor readout with controls, then evaluate a bounded reduced-model option if needed and label it accurately. No paid compute is provisioned.
 
 The UI/controller/save phases are independent and proceed in explicit demo mode. Prompt 05 remains blocked; do not mark a neural release ready based on this report.
+
+## Follow-up research — September 18, 2026
+
+The [training readiness report](NEURAL-TRAINING-READINESS.md) now records
+full-network repeated-window timings, downstream candidate readouts under
+sugar/P9 interventions with paired controls, an offline feeding-feedback trace
+and exact in-process state replay. It also documents a separately pinned
+compiled runtime profile and a predeclared association-training protocol.
+These experiments do not implement an authoritative online service, navigation
+sensor mappings, cross-restart checkpoints or learned choice behavior.
