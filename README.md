@@ -4,7 +4,7 @@
 
 INSPIRE's mobile-first virtual pet experiment: original cute-but-fierce sci-fi dinosaurs, an enchanted pixel garden, and research toward FlyWire-derived neural control.
 
-## Current build: care, art and demo practice arena
+## Current build: care, arena, expeditions and camera companion
 
 - Hatch/name a long-neck; place berries and a toy; feed, play, rest, and decorate.
 - Bounded care stats, one-use interactions, active-time cooldowns, forgiving absence.
@@ -15,6 +15,8 @@ INSPIRE's mobile-first virtual pet experiment: original cute-but-fierce sci-fi d
 - IndexedDB saves, export/import, confirmed replacement, corruption handling, and one-tab ownership.
 - Shield-only practice duels against Echo: Spark, Ward, Bloom, local XP and five cosmetic levels.
 - Resumable rounds and atomic match/XP saves; clearly labeled scripted tactics.
+- Foreground-only walking expeditions, filtered GPS, equivalent indoor quests and capped local supplies.
+- Optional stationary rear-camera overlay, touch/keyboard positioning, garden fallback and local PNG composition.
 - Reproducible real-data brain propagation smoke test and recorded measurements.
 
 **The visible pet is a scripted demo.** It is not connected to the brain runner, does not learn yet, and is not claimed to be conscious. The research run succeeded, but interactive neural deployment is **NO-GO on the tested path**. See [feasibility results](docs/BRAIN-FEASIBILITY.md).
@@ -62,7 +64,7 @@ remains a scripted demo.
 
 ## What is next
 
-Prompt 05 is **blocked**, not implemented; see the [prerequisite review](docs/PROMPT-05-GATE.md). Neural integration remains gated on interactive performance, an evidenced decoder, and licensing review. Care and generated sprite production are implemented. Prompt 06 training remains blocked by that live-control prerequisite. Prompt 07 has a [local scripted practice arena](docs/DUELS.md); its online neural control and authoritative rewards remain unavailable. Cast and Ward art now appears in the arena. Expeditions and camera interactions are later phases.
+Prompt 05 is **blocked**, not implemented; see the [prerequisite review](docs/PROMPT-05-GATE.md). Neural integration remains gated on interactive performance, an evidenced decoder, and licensing review. Care and generated sprite production are implemented. Prompt 06 training remains blocked by that live-control prerequisite. Prompt 07 has a [local scripted practice arena](docs/DUELS.md); its online neural control and authoritative rewards remain unavailable. Cast and Ward art now appears in the arena. [Expeditions](docs/EXPEDITIONS.md) and the optional [camera companion](docs/CAMERA.md) are implemented in demo scope, with target-phone testing pending.
 
 **Installation/offline PWA support is planned, not implemented in this build.** Android/iPhone are target platforms; no physical phone or visual-browser acceptance is claimed. No web deployment, Shopify change, or app-store publication has occurred.
 
@@ -70,7 +72,7 @@ Prompt 05 is **blocked**, not implemented; see the [prerequisite review](docs/PR
 
 State is checkpointed every two seconds while running and on pause/settings/background transitions. Closing or killing a browser may lose the last unsaved interval; it never causes catch-up progression. A second tab remains read-only until the first closes and it reloads. Export backups before clearing browser data. Cloud checkpoint references are a separate reserved field; this demo rejects neural imports.
 
-Schema v1 saves migrate to v2, preserving pet identity, position and PRNG checkpoint; old pets are already hatched. The original v1 record is backed up atomically before the first upgraded write. Settings includes an export of this pre-upgrade backup. New pets start as eggs. Needs change only during active garden ticks, and automatic rest protects low energy.
+Schema v1–v3 saves migrate to v4, preserving pet identity, position, PRNG checkpoint and existing duel progress; old pets are already hatched. The original pre-upgrade record is backed up atomically before the first upgraded write. Expedition saves contain aggregates, never coordinates; camera streams and photos are never saved. Settings includes an export of this pre-upgrade backup. New pets start as eggs. Needs change only during active garden ticks, and automatic rest protects low energy.
 
 ## Documentation
 

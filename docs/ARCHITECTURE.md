@@ -56,3 +56,15 @@ Version 3 saves atomically persist round state, trace and one-time local rewards
 before UI installation. Existing v1/v2 state is preserved in pre-upgrade backups.
 This is not a live brain session or an authoritative online reward service.
 See DUELS.md for the implemented scope and the blocked prompt 06 prerequisite.
+
+## Optional foreground activities
+
+`expedition.ts` filters transient GPS points and validates aggregate exploration
+state; `expedition-ui.ts` manages explicit GPS/indoor start, pause and finish.
+Version 4 adds aggregate resources and journey claims without raw routes. Shared
+activity commits serialize writes and persist rewards before visible installation.
+`camera.ts` owns cancellable rear-camera sessions and PNG encoding; `camera-ui.ts`
+composes a same-origin, unmirrored overlay and handles local previews/export.
+Neither location samples nor photos reach a backend. Hidden/closed experiences
+stop sensors and require explicit restart. Both modals pause garden advancement.
+See EXPEDITIONS.md and CAMERA.md for bounds, fallbacks and target-device gaps.

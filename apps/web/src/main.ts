@@ -1,5 +1,6 @@
 import "./style.css";
 import { loadArt } from "./assets";
+import { setupCamera } from "./camera-ui";
 import { DemoController } from "./controller";
 import {
   DUEL,
@@ -11,6 +12,8 @@ import {
   startDuel,
 } from "./duel";
 import { paintDuel } from "./duel-render";
+import { freshExploration } from "./expedition";
+import { setupExpeditions } from "./expedition-ui";
 import { Ownership } from "./ownership";
 import { paint } from "./render";
 import { parseImport, type Save, SaveStore } from "./storage";
@@ -45,12 +48,15 @@ let save: Save,
   inHabitat = false,
   wantsRun = true,
   writes: Promise<void> = Promise.resolve();
-let arenaBusy = false;
+let commitBusy = false,
+  exiting = false;
+let commitCompletion: Promise<void> | null = null;
 let replaceAction: (() => Promise<void>) | null = null;
 function fresh(): Save {
   const c = new DemoController();
   return {
-    version: 3,
+    version: 4,
+    exploration: freshExploration(),
     progress: freshProgress(),
     pet: { id: crypto.randomUUID(), name: "Sprout", hatched: false },
     world: createWorld(),
@@ -69,11 +75,14 @@ function sync() {
   const running =
     safe &&
     owns &&
+    !exiting &&
     inHabitat &&
     wantsRun &&
     !document.hidden &&
-    !arenaBusy &&
+    !commitBusy &&
     !el<HTMLDialogElement>("duel-dialog").open &&
+    !el<HTMLDialogElement>("expedition-dialog").open &&
+    !el<HTMLDialogElement>("camera-dialog").open &&
     !settings.open &&
     !confirmation.open &&
     !el<HTMLDialogElement>("habitat-settings").open &&
@@ -87,9 +96,11 @@ function sync() {
   el("pause").textContent = wantsRun ? "Pause" : "Resume";
   updateCare();
   updateDuel();
+  expeditions.update();
+  camera.update();
 }
 function persist(): Promise<void> {
-  if (!safe || !owns || arenaBusy) return writes;
+  if (!safe || !owns || commitBusy) return writes;
   save.controller = controller.checkpoint();
   const snapshot = structuredClone(save);
   writes = writes
@@ -219,8 +230,12 @@ document.addEventListener("visibilitychange", () => {
   if (document.hidden) void persist();
 });
 window.addEventListener("pagehide", () => {
+  exiting = true;
   controller.pause();
-  void persist().finally(() => ownership.dispose());
+  void persist().finally(async () => {
+    await commitCompletion;
+    ownership.dispose();
+  });
 });
 window.addEventListener("pageshow", (event) => {
   if (event.persisted) location.reload();
@@ -240,7 +255,7 @@ async function boot() {
       el<HTMLInputElement>("import").disabled = true;
       return;
     }
-    // v1 is backed up atomically by SaveStore before a migrated v2 is written.
+    // Older records are backed up atomically before writing the current schema.
     await store.write(save);
     safe = true;
     start.disabled = false;
@@ -261,6 +276,10 @@ function frame(now: number) {
     });
   if (save) {
     updateCare();
+    if (!document.hidden) {
+      expeditions.update();
+      camera.render(now);
+    }
     if (el<HTMLDialogElement>("duel-dialog").open)
       paintDuel(
         el<HTMLCanvasElement>("duel-canvas"),
@@ -284,7 +303,7 @@ function frame(now: number) {
   requestAnimationFrame(frame);
 }
 function editable() {
-  return safe && owns;
+  return safe && owns && !exiting;
 }
 function activeCare() {
   return (
@@ -293,8 +312,10 @@ function activeCare() {
     wantsRun &&
     !document.hidden &&
     save.pet.hatched &&
-    !arenaBusy &&
+    !commitBusy &&
     !el<HTMLDialogElement>("duel-dialog").open &&
+    !el<HTMLDialogElement>("expedition-dialog").open &&
+    !el<HTMLDialogElement>("camera-dialog").open &&
     !settings.open &&
     !confirmation.open &&
     !el<HTMLDialogElement>("habitat-settings").open
@@ -416,11 +437,11 @@ function updateDuel() {
   el<HTMLButtonElement>("duel-open").disabled =
     !editable() || !save.pet.hatched;
   el<HTMLButtonElement>("duel-new").disabled =
-    !editable() || arenaBusy || m?.outcome === "active";
+    !editable() || commitBusy || m?.outcome === "active";
   el<HTMLButtonElement>("duel-next").disabled =
-    !editable() || arenaBusy || document.hidden || m?.outcome !== "active";
-  el<HTMLButtonElement>("duel-close").disabled = arenaBusy;
-  el<HTMLSelectElement>("duel-instruction").disabled = arenaBusy;
+    !editable() || commitBusy || document.hidden || m?.outcome !== "active";
+  el<HTMLButtonElement>("duel-close").disabled = commitBusy;
+  el<HTMLSelectElement>("duel-instruction").disabled = commitBusy;
   for (const side of ["player", "opponent"] as const) {
     const f = m?.[side];
     el(`${side}-shield`).textContent =
@@ -437,34 +458,53 @@ function updateDuel() {
 async function duelChange(change: (p: Progress) => Progress) {
   if (
     !editable() ||
-    arenaBusy ||
+    commitBusy ||
     document.hidden ||
     !inHabitat ||
     !save.pet.hatched ||
     !arena.open
   )
     return;
-  arenaBusy = true;
+  await commitSave((next) => {
+    next.progress = change(next.progress);
+    return next;
+  });
+}
+async function commitSave(change: (s: Save) => Save): Promise<boolean> {
+  if (!editable() || commitBusy || document.hidden) return false;
+  commitBusy = true;
+  let complete: () => void = () => {};
+  commitCompletion = new Promise<void>((resolve) => {
+    complete = resolve;
+  });
   sync();
   try {
     await writes;
-    if (!safe) return;
+    if (!editable() || document.hidden) return false;
     const next = structuredClone(save);
     next.controller = controller.checkpoint();
-    next.progress = change(next.progress);
-    // Completion and XP commit together before the visible state is installed.
-    writes = store.write(next);
+    const changed = change(next);
+    // Aggregate progress and any reward commit before visible state installation.
+    writes = store.write(changed);
     await writes;
-    install(next);
+    install(changed);
+    return true;
   } catch (error) {
     safe = false;
     writes = Promise.resolve();
-    message.textContent = `Duel saving stopped: ${displayError(error)}. Export your pet before reloading.`;
+    start.disabled = true;
+    message.textContent = `Activity saving stopped: ${displayError(error)}. Export your pet before reloading.`;
+    status.textContent = message.textContent;
+    expeditions.stop("Saving stopped. Export your save before reloading.");
+    return false;
   } finally {
-    arenaBusy = false;
+    commitBusy = false;
+    complete();
+    commitCompletion = null;
     sync();
   }
 }
+
 el("duel-open").onclick = () => {
   if (!editable() || !save.pet.hatched || !inHabitat) return;
   arena.showModal();
@@ -481,14 +521,28 @@ el("duel-next").onclick = () =>
     ),
   );
 el("duel-close").onclick = () => {
-  if (!arenaBusy) arena.close();
+  if (!commitBusy) arena.close();
 };
 arena.addEventListener("cancel", (event) => {
-  if (arenaBusy) event.preventDefault();
+  if (commitBusy) event.preventDefault();
 });
 arena.addEventListener("close", () => {
   sync();
   void persist();
+});
+const expeditions = setupExpeditions({
+  getSave: () => save,
+  editable,
+  busy: () => commitBusy,
+  sync,
+  commit: commitSave,
+});
+const camera = setupCamera({
+  getSave: () => save,
+  editable,
+  busy: () => commitBusy,
+  sync,
+  commit: commitSave,
 });
 void loadArt().catch((error) => {
   message.textContent = displayError(error);

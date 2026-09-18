@@ -501,3 +501,42 @@ select {
 #duel-dialog p {
   overflow-wrap: anywhere;
 }
+.activity-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin: 14px 0;
+}
+#expedition-dialog .activity-actions button {
+  flex: 1 1 140px;
+}
+#expedition-dialog p {
+  overflow-wrap: anywhere;
+}
+#camera-canvas {
+  display: block;
+  width: 100%;
+  height: auto;
+  max-height: 55dvh;
+  object-fit: contain;
+  image-rendering: pixelated;
+  touch-action: none;
+  border-radius: 12px;
+}
+#camera-dialog .activity-actions button {
+  flex: 1 1 140px;
+}
+#camera-dialog p {
+  overflow-wrap: anywhere;
+}
+#camera-photo-preview {
+  display: block;
+  width: 100%;
+  height: auto;
+  margin: 12px 0;
+}
+#camera-dialog input[type="range"] {
+  display: block;
+  width: 100%;
+  min-height: 44px;
+}

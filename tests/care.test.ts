@@ -4,6 +4,7 @@ import { frameFor, manifest } from "../apps/web/src/assets";
 import { BALANCE } from "../apps/web/src/balance";
 import { DemoController } from "../apps/web/src/controller";
 import { freshProgress } from "../apps/web/src/duel";
+import { freshExploration } from "../apps/web/src/expedition";
 import { type Save, SaveStore, validateSave } from "../apps/web/src/storage";
 import {
   advance,
@@ -14,7 +15,8 @@ import {
 
 function seedSave(): Save {
   return {
-    version: 3,
+    version: 4,
+    exploration: freshExploration(),
     progress: freshProgress(),
     pet: { id: "care-pet", name: "Fern", hatched: true },
     world: createWorld(),
@@ -127,7 +129,7 @@ describe("save upgrade", () => {
   it("retains v1 identity, PRNG and position and marks pet hatched", () => {
     const old = legacy(),
       v2 = validateSave(old);
-    expect(v2.version).toBe(3);
+    expect(v2.version).toBe(4);
     expect(v2.pet).toEqual({ ...old.pet, hatched: true });
     expect(v2.world.x).toBe(0.7);
     expect(v2.controller.rng).toBe(old.controller.rng);
@@ -154,7 +156,7 @@ describe("save upgrade", () => {
     expect(loaded?.pet.id).toBe("old-pet");
     await store.write(loaded as Save);
     expect(await store.legacyBackup()).toEqual(old);
-    expect((await store.load())?.version).toBe(3);
+    expect((await store.load())?.version).toBe(4);
   });
   it("rejects duplicated objects and invalid needs without replacing save", () => {
     const s = seedSave();
