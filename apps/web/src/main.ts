@@ -1,6 +1,16 @@
 import "./style.css";
 import { loadArt } from "./assets";
 import { DemoController } from "./controller";
+import {
+  DUEL,
+  freshProgress,
+  type Instruction,
+  level,
+  type Progress,
+  playRound,
+  startDuel,
+} from "./duel";
+import { paintDuel } from "./duel-render";
 import { Ownership } from "./ownership";
 import { paint } from "./render";
 import { parseImport, type Save, SaveStore } from "./storage";
@@ -35,11 +45,13 @@ let save: Save,
   inHabitat = false,
   wantsRun = true,
   writes: Promise<void> = Promise.resolve();
+let arenaBusy = false;
 let replaceAction: (() => Promise<void>) | null = null;
 function fresh(): Save {
   const c = new DemoController();
   return {
-    version: 2,
+    version: 3,
+    progress: freshProgress(),
     pet: { id: crypto.randomUUID(), name: "Sprout", hatched: false },
     world: createWorld(),
     controller: c.checkpoint(),
@@ -60,6 +72,8 @@ function sync() {
     inHabitat &&
     wantsRun &&
     !document.hidden &&
+    !arenaBusy &&
+    !el<HTMLDialogElement>("duel-dialog").open &&
     !settings.open &&
     !confirmation.open &&
     !el<HTMLDialogElement>("habitat-settings").open &&
@@ -72,9 +86,10 @@ function sync() {
     : "RESTING • DEMO";
   el("pause").textContent = wantsRun ? "Pause" : "Resume";
   updateCare();
+  updateDuel();
 }
 function persist(): Promise<void> {
-  if (!safe || !owns) return writes;
+  if (!safe || !owns || arenaBusy) return writes;
   save.controller = controller.checkpoint();
   const snapshot = structuredClone(save);
   writes = writes
@@ -246,6 +261,12 @@ function frame(now: number) {
     });
   if (save) {
     updateCare();
+    if (el<HTMLDialogElement>("duel-dialog").open)
+      paintDuel(
+        el<HTMLCanvasElement>("duel-canvas"),
+        save.progress,
+        save.settings.reducedMotion,
+      );
     const reduced = save.settings.reducedMotion;
     if (inHabitat)
       paint(
@@ -272,6 +293,8 @@ function activeCare() {
     wantsRun &&
     !document.hidden &&
     save.pet.hatched &&
+    !arenaBusy &&
+    !el<HTMLDialogElement>("duel-dialog").open &&
     !settings.open &&
     !confirmation.open &&
     !el<HTMLDialogElement>("habitat-settings").open
@@ -363,7 +386,7 @@ el("habitat-settings").addEventListener("close", () => {
 });
 el("export-legacy").onclick = async () => {
   try {
-    const backup = await store.legacyBackup();
+    const backup = await store.previousBackup();
     if (!backup) {
       status.textContent = "No older save needed migration on this device.";
       return;
@@ -373,13 +396,100 @@ el("export-legacy").onclick = async () => {
     );
     const a = document.createElement("a");
     a.href = url;
-    a.download = "flyzrds-v1-backup.json";
+    a.download = "flyzrds-pre-upgrade-backup.json";
     a.click();
     setTimeout(() => URL.revokeObjectURL(url), 1000);
   } catch (error) {
     status.textContent = `Backup unavailable: ${displayError(error)}`;
   }
 };
+const arena = el<HTMLDialogElement>("duel-dialog");
+function updateDuel() {
+  if (!save) return;
+  const p = save.progress,
+    m = p.duel;
+  const current = level(p.xp);
+  el("level-value").textContent = `Level ${current} / 5 · ${p.xp} demo XP`;
+  el("duel-unlock").textContent =
+    ["Jade", "Amber", "Cyan", "Violet", "Gold"][current - 1] +
+    " accent unlocked";
+  el<HTMLButtonElement>("duel-open").disabled =
+    !editable() || !save.pet.hatched;
+  el<HTMLButtonElement>("duel-new").disabled =
+    !editable() || arenaBusy || m?.outcome === "active";
+  el<HTMLButtonElement>("duel-next").disabled =
+    !editable() || arenaBusy || document.hidden || m?.outcome !== "active";
+  el<HTMLButtonElement>("duel-close").disabled = arenaBusy;
+  el<HTMLSelectElement>("duel-instruction").disabled = arenaBusy;
+  for (const side of ["player", "opponent"] as const) {
+    const f = m?.[side];
+    el(`${side}-shield`).textContent =
+      `${f?.shield ?? DUEL.shield} / ${DUEL.shield} shield · ${f?.mana ?? DUEL.mana} / ${DUEL.mana} charge · ${f?.barrier ?? 0} barrier`;
+  }
+  el("duel-result").textContent = !m
+    ? "Start a friendly practice duel."
+    : m.outcome === "active"
+      ? `Round ${m.round} / ${DUEL.rounds}. Choose an instruction, then advance one round.`
+      : `${m.outcome.toUpperCase()} · ${DUEL.rewards[m.outcome]} demo XP (saved once). Both companions recover fully for the next match.`;
+  el("duel-log").textContent =
+    m?.trace.join("\n\n") ?? "No tactical decisions yet.";
+}
+async function duelChange(change: (p: Progress) => Progress) {
+  if (
+    !editable() ||
+    arenaBusy ||
+    document.hidden ||
+    !inHabitat ||
+    !save.pet.hatched ||
+    !arena.open
+  )
+    return;
+  arenaBusy = true;
+  sync();
+  try {
+    await writes;
+    if (!safe) return;
+    const next = structuredClone(save);
+    next.controller = controller.checkpoint();
+    next.progress = change(next.progress);
+    // Completion and XP commit together before the visible state is installed.
+    writes = store.write(next);
+    await writes;
+    install(next);
+  } catch (error) {
+    safe = false;
+    writes = Promise.resolve();
+    message.textContent = `Duel saving stopped: ${displayError(error)}. Export your pet before reloading.`;
+  } finally {
+    arenaBusy = false;
+    sync();
+  }
+}
+el("duel-open").onclick = () => {
+  if (!editable() || !save.pet.hatched || !inHabitat) return;
+  arena.showModal();
+  sync();
+  void persist();
+};
+el("duel-new").onclick = () => void duelChange(startDuel);
+el("duel-next").onclick = () =>
+  void duelChange((p) =>
+    playRound(
+      p,
+      el<HTMLSelectElement>("duel-instruction").value as Instruction,
+      controller.checkpoint(),
+    ),
+  );
+el("duel-close").onclick = () => {
+  if (!arenaBusy) arena.close();
+};
+arena.addEventListener("cancel", (event) => {
+  if (arenaBusy) event.preventDefault();
+});
+arena.addEventListener("close", () => {
+  sync();
+  void persist();
+});
 void loadArt().catch((error) => {
   message.textContent = displayError(error);
 });

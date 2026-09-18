@@ -108,3 +108,24 @@ Next: resolve the research gate before implementing Prompt 05 or Prompt 06.
   validate cue/navigation mappings, local authoritative sessions and persistent
   neural/world/RNG restoration, then run the predeclared adapter training protocol.
   Code/data usage decisions remain open before a public/commercial release.
+
+## Prompt 07 local demo arena; prompt 06 still blocked
+
+- Implemented shield-only practice against Echo with centralized Spark/Ward/Bloom
+  costs, cooldowns, simultaneous outcomes, charge/rest and a 20-round limit.
+- Broad instructions feed an isolated fork of the scripted care controller;
+  trace separates controller observations/outputs from game-rule effects.
+  No learning or biological combat claim. Care state pauses and remains intact.
+- Added local XP, levels 1–5, cosmetic accents/effects, full next-match recovery,
+  saved round resume and atomic completion/reward updates. Version 3 migration
+  preserves v1/v2 backups. No online reward authority or PvP is implemented.
+- Prompt 06 remains incomplete: its explicit live-control prerequisite is unmet.
+  Existing research measurements and planned protocol are not training success.
+  DUELS.md documents implemented scope and remaining neural/online gates.
+- Verification: npm ci && npm run check passed (35 tests, typecheck, lint,
+  production build); Python brain unit tests passed (5); verify-assets.py passed
+  (32 sprites); git diff --check passed. Tests include rapid duplicate UI clicks,
+  persisted XP idempotency, deterministic reload, malformed-save protection,
+  legal actions, draw/win/loss, defeat recovery and v2 backup migration.
+- Real-browser visual and physical-device acceptance remain untested. No service,
+  paid compute, model training or deployment was started.

@@ -68,6 +68,39 @@ it("connects title, habitat, pause, settings and confirmed reset without request
   await vi.waitFor(async () =>
     expect((await store.load())?.world.scenery).toBe("mushrooms"),
   );
+  const careBeforeDuel = (await store.load())?.world;
+  get("duel-open").click();
+  expect(get("state-label").textContent).toContain("RESTING");
+  get("duel-new").click();
+  await vi.waitFor(async () =>
+    expect((await store.load())?.progress.matches).toBe(1),
+  );
+  get("duel-next").click();
+  get("duel-next").click();
+  await vi.waitFor(async () =>
+    expect((await store.load())?.progress.duel?.round).toBe(1),
+  );
+  get("duel-close").click();
+  get("duel-open").click();
+  expect(get("duel-result").textContent).toContain("Round 1");
+  for (let i = 0; i < 20; i++) {
+    const previous = await store.load();
+    if (!previous) throw new Error("Missing saved match");
+    if (previous.progress.duel?.outcome !== "active") break;
+    get("duel-next").click();
+    await vi.waitFor(async () =>
+      expect((await store.load())?.progress.duel?.round).toBe(
+        (previous.progress.duel?.round ?? 0) + 1,
+      ),
+    );
+  }
+  const completed = await store.load();
+  if (!completed) throw new Error("Missing completed match");
+  expect(completed.progress.xp).toBeGreaterThan(0);
+  expect(completed.world).toEqual(careBeforeDuel);
+  get("duel-next").click();
+  expect((await store.load())?.progress.xp).toBe(completed.progress.xp);
+  get("duel-close").click();
   get("home-link").click();
   get("settings-open").click();
   const motion = get<HTMLInputElement>("motion");

@@ -34,7 +34,7 @@ Observations gained optional validated targetX and rest fields; the local model
 identifier is now demo-care-v2. The controller chooses approach/stop/interact;
 world rules clamp the walking lane, consume an object once, and update bounded
 needs. Decorations remain outside the walking lane. One food and one toy maximum;
-consumption starts a persisted active-tick cooldown. No XP, currency, learned
+consumption starts a persisted active-tick cooldown. No care XP, currency, learned
 weights or claim of biological behavior. Rest restores energy; low energy enters
 auto-rest; zero food never kills a pet. No timestamp-driven absence decay.
 
@@ -46,3 +46,13 @@ care mutations. Habitat modal pauses progression; scenery persists.
 Runtime atlases and manifest are loaded from same-origin static assets. Scene
 rendering uses logical 320px canvases and nearest-neighbor sampling; sprite
 workshop demonstrates integer scales. Physical DPR/viewport checks remain pending.
+
+## Local practice arena
+
+`duel.ts` provides deterministic shield rules, a fixed adapter over an isolated
+demo-controller fork, and local progression. `duel-render.ts` draws the Echo
+projection and level cosmetics. The garden pauses while the arena is open.
+Version 3 saves atomically persist round state, trace and one-time local rewards
+before UI installation. Existing v1/v2 state is preserved in pre-upgrade backups.
+This is not a live brain session or an authoritative online reward service.
+See DUELS.md for the implemented scope and the blocked prompt 06 prerequisite.
